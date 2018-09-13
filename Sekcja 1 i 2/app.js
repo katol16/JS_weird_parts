@@ -57,3 +57,136 @@ if (c === undefined) {
 // Lekcja nr 12 "The Execution Context: Code execution"
 
 // To po prostu faza w której wykonuję się twój kod, linia po lini.
+
+
+// Lekcja nr 13 "Conceptual Aside: Single Threaded, Synchronous Execution"
+
+// Synchronous - "one an a time" - jedna linia jest wykonywana, w danym czasie, pozniej przychodzi do następnej
+// oczywiście są metody Asynchronous, ale w swoim zachowaniu JS jest "Single Threaded, Synchronous"
+
+
+// Lekcja nr 14 "Function Invocation and the Execution Stack"
+
+// Invocation: Running a function. In JavaScript, by using parenthesis ()
+// Every function create Execution Context(2 fazy: create and execute)
+
+// Przykład jak to działa (pokażemy które console.logi wykonają się jako pierwsze)
+
+function a1() {
+	b1();
+	console.log('Trzeci');
+}
+
+function b1() {
+	c1();
+	console.log('Drugi');
+}
+
+function c1() {
+	console.log('Pierwszy');
+}
+
+function d1() {
+	console.log('Czwarty');
+}
+
+a1();
+d1();
+
+
+// Lekcja nr 15 "Functions, Context, and Variable Environments"
+
+// Variable Environment: Where the Variables Live and how they relate to each other in memory
+
+function b2() {
+	// Tu jesteśmy w b2() Execution context
+	var myVar;
+	console.log(myVar);
+}
+
+function a2() {
+	// Tu jesteśmy w a2() Execution context
+	var myVar=2;
+	console.log(myVar);
+	b2();
+}
+
+var myVar = 1;
+console.log(myVar);
+a2();
+console.log(myVar);
+// Tu jesteśmy w Global Execution context
+
+// W consoli wyświetli pokolei
+// 1, 2, undefined, 1
+// ta jedynka jest na końcu bo jest SCOPE! Pamietaj o tym!
+
+
+// Lekcja nr 16 "The Scope Chain"
+
+function b3() {
+	console.log(myVar); // wyświetli 1
+}
+
+function a3() {
+	var myVar=2;
+	b3();
+}
+
+var myVar = 1;
+a3();
+
+// W tym przypadku (powyżej) funckja b3, siedzi fizycznie w Global Execution Context
+
+// UWAGA! Jesli powyżej zaminimy miejscami a3()  z myvVar czyli bedize:
+// a3();
+// var myVar = 1;
+// To będzie ten sam rezultat, bo pamiętaj, że kązdy Execution Context (np. funkcja), ma dostęp do zewnętrznego środowiska,
+// czyli jak funkcja b3(), nie znajdzię myVar w swoim wnętrzu, to będzie szukała myVar na zewnątrz, w naszym przypadku będzie to Global Execution Context
+
+function a4() {
+
+	function b4() {
+		console.log(myVar); // wyświetli 2
+	}	
+
+	var myVar = 2; // jeśli usuniesz tę zmeinną to bedzie znowu w consoli '1', 
+	// bo funkcja b4 szuka wg. scope chain, najpierw w funckji a, 
+	// a póżniej (jeśli nie znajdzie) zgodnie z scope chain w global execution context
+	b4();
+}
+
+var myVar = 1;
+a4();
+
+// W tym przypadku (powyżej) funckja b4, siedzi fizycznie w a4 Execution Context
+
+
+// Lekcja nr 17 "Scope, ES6, let"
+
+// Scope: Where a variable is available in your code 
+// and if it's truly the same variable, or a new copy
+
+// let - jest "block scoping", więc np nawet w instrukcji if
+
+{
+	let zmienna = "nie wyswietli w consoli";
+}
+// console.log(zmienna); // będzie erro "in not defined"
+
+
+// Lekcja nr 18 "What about Aynchronous Callbacks?"
+
+// Asynchronous: More then one at a time.
+
+// OD NOWA TA LEKCJA!!!!!
+// OD NOWA TA LEKCJA!!!!!
+// OD NOWA TA LEKCJA!!!!!
+// OD NOWA TA LEKCJA!!!!!
+// OD NOWA TA LEKCJA!!!!!
+// OD NOWA TA LEKCJA!!!!!
+// OD NOWA TA LEKCJA!!!!!
+// OD NOWA TA LEKCJA!!!!!
+// OD NOWA TA LEKCJA!!!!!
+// OD NOWA TA LEKCJA!!!!!
+// OD NOWA TA LEKCJA!!!!!
