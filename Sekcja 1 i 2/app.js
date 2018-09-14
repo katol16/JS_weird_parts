@@ -179,6 +179,16 @@ a4();
 
 // Asynchronous: More then one at a time.
 
+// W silniku JS mamy też Event Queue - tam sa notyfikację eventów w JS.
+// Pamietaj, że JS patrzy na Event Queue dopiero jak execution stack jest pusty 
+
+// Z tą asynchronicznoscią, to jest tak ,że przeglądarka wrzuca asynchronicnzie rzeczy do event queue
+// ale JS wykonuję się synchronicznie linia po lini. (chyba)
+// (wydaje mi sie, ze w kursie compelte JS, jest to lepiej tłumaczone)
+
+// ALe generalnie jest tak, że asynchronicnze callbacki, są możlwie w JS, 
+// ale sama ta asynchroniczność dzieje się poza silnikiem JS
+
 // long running function
 function waiThreeSeconds() {
 	var ms = 3000 +new Date().getTime();
@@ -195,3 +205,10 @@ document.addEventListener('click', clickHandler);
 
 waitThreeSeconds();
 console.log('finished execution');
+// W powyższym kodzie jeśli nie klikniemy, to wywoła "finished funciton", a pozniej "finished exxecution"
+// Jeśli klinkniemy w ciagu 3 sekund kiedy funkcja 'waiThreeSeconds' jest wykonywana, to bedzie:
+// "finished funciton", a pozniej "finished exxecution" a na koniec "click event".
+// Dzieje się tak ponieważ javaScript wykona eventy dopeiro jak execution stack bedzie pusty 
+// (global i ta funkcja, która jest wywoływana w globalnym zakresie)
+// Mimo, że JS jes synchroniczny, to moga tam się wykonwyać asyncrhonicze akcję, ponieważ w przeglądarce
+// oprócz silnika JS, mamy jeszcze inne silniki, mp: Rendering Engine, Http Request.
