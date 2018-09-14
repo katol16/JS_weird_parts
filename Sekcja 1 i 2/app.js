@@ -179,14 +179,19 @@ a4();
 
 // Asynchronous: More then one at a time.
 
-// OD NOWA TA LEKCJA!!!!!
-// OD NOWA TA LEKCJA!!!!!
-// OD NOWA TA LEKCJA!!!!!
-// OD NOWA TA LEKCJA!!!!!
-// OD NOWA TA LEKCJA!!!!!
-// OD NOWA TA LEKCJA!!!!!
-// OD NOWA TA LEKCJA!!!!!
-// OD NOWA TA LEKCJA!!!!!
-// OD NOWA TA LEKCJA!!!!!
-// OD NOWA TA LEKCJA!!!!!
-// OD NOWA TA LEKCJA!!!!!
+// long running function
+function waiThreeSeconds() {
+	var ms = 3000 +new Date().getTime();
+	while (new Date() < ms){}
+	console.log('finished function');
+}
+
+function clickHandler() {
+	console.log('click event!');
+}
+
+// listen for the click event
+document.addEventListener('click', clickHandler);
+
+waitThreeSeconds();
+console.log('finished execution');
