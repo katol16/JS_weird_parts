@@ -40,3 +40,43 @@
 
 // Operator: A special function that is syntactically (written) differently.
 // Genrally, operatos take two parameters and return one result
+
+
+// Lekcja nr 22 "Operator precedence and associativity"
+
+// Operator precedence: Which operator function gets called first.
+// Function are called in orderd of precedence (HIGHER precedence wins)
+
+// Associativity: What order operator functions get called in: Left-to-right or Right-to-left
+// When functions have the same precedence
+
+// Przykłady 
+var a = 3+4*5;
+console.log(a);
+// na MDN masz też sporo o Operator precedence, masz tam też listę od najwyższych "precedence" do najniższych
+
+// Co się dzieję gdy funckje maja ten sam numer "precedence"
+var a = 2, b = 3, c = 4;
+
+a = b = c;
+
+// dla operatora "=" mamy assiociativity "right-to-left"
+// więc na początku wywołuje " b=c "
+console.log(a);
+console.log(b);
+console.log(c);
+// wszystkie będa równe 4 
+
+// Jeśli kilka operatorów ma takie same "Precedence", to JS sprawdza associativity, pktóre jest albo left-to-tight albo right-to-left
+
+
+// Lekcja nr 23 "Conceptual aside: Coercion" 
+
+// Coercion: Converting a value from one type to another 
+// This happens quite often in Javascript because it's dynamically typed.
+
+var e = 1 + '2';
+console.log(e);
+// będzie 12
+// Stało się tak ponieważ ta 1, została skonwertowana przez JS na string
+// Ponieważ JS jest dynamiclly type, intuicyjnie sam stara się skonwertować odpowiednie wartości
