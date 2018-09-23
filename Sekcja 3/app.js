@@ -2,11 +2,11 @@
 
 // Lekcja nr 19 "Conceptual aside: Types and JavaScript"
 
-// Dynamic Typing: You do't tell the engine what type of data a varibale holds, it figures it out while Your code is running
+// Dynamic Typing: You don't tell the engine what type of data a varibale holds, it figures it out while Your code is running
 
-// Variables can hold differnt types of values because it's figured out during execution
+// Variables can hold different types of values because it's figured out during execution
 
-// Static Typinh (np. w C# albo w JAVA)
+// Static Typing (np. w C# albo w JAVA)
 // bool isNew = "Chuj"; // Zwróci błąd
 
 // Dynamic Typing 
@@ -18,7 +18,7 @@
 
 // Czyli w niektórych językach porgramowania trzeba podać, ze to bedize boolean, string albo number.
 // W JS nie trzeba tego robić, bo jest 'Dynamic Typing'
-// Oczywiście to ma sowje plusy i minusy, jeśli nie wiesz jak to działa, to może to spowodować problemy
+// Oczywiście to ma swoje plusy i minusy, jeśli nie wiesz jak to działa, to może to spowodować problemy
 
 // Lekja nr 20 "Primitive Types"
 
@@ -27,7 +27,7 @@
 
 
 // w JS mamy 6 typów prymitywnych:
-// 1) UNDEFINED - undefined represents lack of exictence (you sholudn'e set a variable to this)
+// 1) UNDEFINED - undefined represents lack of exictence (you sholudn't set a variable to this)
 // 2) NULL - represents lack of existence (you can set a variable to this) -  Jeśli chcesz aby zmienna była psuta, to dobrze uzyc "null"
 // 3) BOOLEAN - true or false
 // 4) NUMBER - Floating point number (there's always some decimals). 
@@ -67,10 +67,10 @@ console.log(b);
 console.log(c);
 // wszystkie będa równe 4 
 
-// Jeśli kilka operatorów ma takie same "Precedence", to JS sprawdza associativity, pktóre jest albo left-to-tight albo right-to-left
+// Jeśli kilka operatorów ma takie same "Precedence", to JS sprawdza associativity, które jest albo left-to-tight albo right-to-left
 
 
-// Lekcja nr 23 "Conceptual aside: Coercion" 
+// Lekcja nr 24 "Conceptual aside: Coercion" 
 
 // Coercion: Converting a value from one type to another 
 // This happens quite often in Javascript because it's dynamically typed.
@@ -80,3 +80,102 @@ console.log(e);
 // będzie 12
 // Stało się tak ponieważ ta 1, została skonwertowana przez JS na string
 // Ponieważ JS jest dynamiclly type, intuicyjnie sam stara się skonwertować odpowiednie wartości
+
+
+// Lekcja nr 25 "Comparison Operators"
+
+console.log(1<2<3);// zwróci true
+console.log(3<2<1);// też zwróci true, co jest dziwne, poniżej masz dlaczego tak się dzieję
+// w powyższym przykłądzie dzieje się tak ze względu na Precedence i Associativity
+// Przy znaku '<' czyli 'less then' mamy associativity left to right.
+// Poniważ mamy dwa znaki '<', to mamy ten sam Precedence i left to right associativity
+// Więc to co widzi JS to w sumie będzie console.log(false < 1); 
+// A ponieważ false jest przez coercion konwertowane na zero, to zwraca nam "true"
+// console.log(Number(false)); zwróci 0
+
+// 3 == 3 // zwróci true
+// '3' == 3 // zwróci true
+// false == 0 // true
+// "" == 0 // true
+
+// To wszystko powyżej dzieje się ponieważ zachodzi coercion
+// Jeśli chcemy, żeby coercion nie zachodziło, to robimy '==='
+
+// Uwaga! Coercion zachodzi w inny sposób dla null np:
+// null == 0 // zwróci false
+// null < 0 // zwróci true
+// Czyli w niektórych przypadkach null jest konwertowany na zero, a w niektórych nie jest
+
+// Pamiętaj, że coercion może powodować problemy, dlatego warto używać '==='
+// w tym przypadku, nie będzie konwertował wartości
+// 3 === 3 // true
+// "3" === "3" // true
+// "3" === 3 // false
+// 0 === false // false
+
+// Pamiętaj! Używaj '===', chyba, że chcesz, zeby coercion zachodziło wtedy mzoesz '=='
+// Na temt '===', masz więcej na MDN
+
+
+// Lekcja nr 27 "Existence and Booleans"
+
+Boolean(undefined); // false
+Boolean(null); // false
+Boolean(""); // false
+
+var a;
+// tak samo bedzie jak a=0
+
+// własnie w tym przypadku coercion jest przydatne, bo skonwertuje wartosc "a", na boolead, w tym przypadku na false.
+if (a) {
+	console.log('Wykona się');
+	// nie ywkona się
+}
+
+
+// Lekcja nr 28 "Default values"
+
+// Pamiętaj, że "lub" czyli || moze zwracać konkretną wartość, a nie tylko true/false
+// undefined || "hello" // zwróci "hello"
+// null || "hello" // zwróci "hello"
+// "" || "hello" // zwróci "hello"
+
+function greet(name) {
+	console.log('Hello ' + name);
+	// wyświetli 'Hello undefined'
+}
+
+greet();
+
+// Teraz funkcja z ustawioną wartością defaultową
+function greet2(name) {
+	name = name || '<Your name here>'
+	console.log('Hello ' + name);
+}
+
+greet2();
+greet2('Karol');
+
+
+// Lekcja nr 29 "Framework aside: default values"
+
+// Załóżmy, ze do swojej apki podpinasz 2 bilbioteki i swój skrypt
+// czyli:
+// <script src="lib1.js"></script>
+// <script src="lib2.js"></script>
+// <script src="app.js"></script>
+
+// i masz tam taki kod 
+// <script src="lib1.js">
+	var libraryName = "lib1";
+// </script>
+
+// <script src="lib2.js">
+	var libraryName = "lib2";
+// </script>
+
+// <script src="app.js">
+ 	console.log(libraryName); // zwróci 'lib2'
+// </script>
+
+// Jeśli chcielibyśmy, żeby 
