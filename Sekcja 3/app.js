@@ -164,6 +164,7 @@ greet2('Karol');
 // <script src="lib1.js"></script>
 // <script src="lib2.js"></script>
 // <script src="app.js"></script>
+// Pamiętaj, że ten kod wykona się tak jakby był w pojedynczym pliku
 
 // i masz tam taki kod 
 // <script src="lib1.js">
@@ -178,4 +179,24 @@ greet2('Karol');
  	console.log(libraryName); // zwróci 'lib2'
 // </script>
 
-// Jeśli chcielibyśmy, żeby 
+// Pamietaj, że zmienna libraryName jest globalna, siedzi w global execution context
+
+// Jeśli np. przypadkowo nadpiszemy naszą zmienną z biblioteki? 
+// Co zrobić w biblitoekach, żeby zabezpieczyć nasze zmienne przed przypadkowm nadpisaniem?
+// Poniżej przykład
+
+// Więc sprawdzam, czy już w global cotext istnieje libraryName, jesli nie, to ustawiam mu wartość
+// window.libraryName = window.libraryName || "Lib 2";
+// więc wstawiając taki kob do lib2.js, sprawimy, że libraryName w poniższym przykąłdzie będzie równe "lib1"
+
+// <script src="lib1.js">
+	var libraryName = "lib1";
+// </script>
+
+// <script src="lib2.js">
+	window.libraryName = window.libraryName || "Lib 2";
+// </script>
+
+// <script src="app.js">
+ 	console.log(libraryName); // zwróci 'lib2'
+// </script>
