@@ -82,3 +82,37 @@ greet({firstName: 'Mary', lastName: "Smith"});
 Karol.address2 = {
 	street: 'Sobieskiego'
 }
+
+
+// Lekcja nr 32 "Framework aside: Faking Namespaces"
+
+// Namespace: A container for variables and functions
+// Typically to keep variables and functions with the same name seperate
+
+// Teraz o co chodzi z tym "Faking namespaces"
+
+var greet2 = 'Hello!';
+var greet2 = 'Hola!';
+
+console.log(greet2);
+
+// Generalnie tych faking namespaces uzywmay przy budownaiu np. frameworka, albo biblioteki
+// Chodzi o to, żeby tworzyć dla naszych zmeinnych pewien konterner w postaci obiektu,
+// żeby te zmeinne nie było dostępne globalnie i nikt ich nie nadpisał
+
+// Poniżej dwa sposby jak możesz taki kontener utworzyć
+// "engilsh" jest przykąłdem gdzie musimy bardziej zagnieździć nasz kontener
+var english = {
+	greetings: {
+		basic: 'Hello!'
+	}
+};
+
+var spanish = {};
+
+spanish.greet = 'Hola!';
+
+console.log(english.greetings);
+console.log(spanish.greet);
+
+
