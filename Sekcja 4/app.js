@@ -217,55 +217,117 @@ anonymousGreet();
 
 // UWAGA!
 // jak zrobimy tak:
-// anonymousGreet();
-// var anonymousGreet = function() {
-// 	console.log('hi!');	
-// }
+	// anonymousGreet();
+	// var anonymousGreet = function() {
+	// 	console.log('hi!');	
+	// }
 // to będzie 'udefined is not a function', ze względu na hoisting! Pamiętaj!
 // Pamiętaj też, że to zadziałą normalnie
-// greet3();
-// function greet3() {
-// 	console.log('hi!');
-// }
+	// greet3();
+	// function greet3() {
+	// 	console.log('hi!');
+	// }
 // Hoisting jesli widzi funkcję w creation phase to ją zapisuje w pamieci, dla zmiennych tworzy miejsce i daje undefined w creation phase
+// Function expressions are not HOISTED!
 // JS is variable HOISTED! 
 
-// Skończyłeś na 13:00 !!!
-// Skończyłeś na 13:00 !!!
-// Skończyłeś na 13:00 !!!
-// Skończyłeś na 13:00 !!!
-// Skończyłeś na 13:00 !!!
-// Skończyłeś na 13:00 !!!
-// Skończyłeś na 13:00 !!!
-// Skończyłeś na 13:00 !!!
-// Skończyłeś na 13:00 !!!
-// Skończyłeś na 13:00 !!!
-// Skończyłeś na 13:00 !!!
-// Skończyłeś na 13:00 !!!
-// Skończyłeś na 13:00 !!!
-// Skończyłeś na 13:00 !!!
-// Skończyłeś na 13:00 !!!
-// Skończyłeś na 13:00 !!!
-// Skończyłeś na 13:00 !!!
-// Skończyłeś na 13:00 !!!
-// Skończyłeś na 13:00 !!!
-// Skończyłeś na 13:00 !!!
-// Skończyłeś na 13:00 !!!
-// Skończyłeś na 13:00 !!!
-// Skończyłeś na 13:00 !!!
-// Skończyłeś na 13:00 !!!
-// Skończyłeś na 13:00 !!!
-// Skończyłeś na 13:00 !!!
-// Skończyłeś na 13:00 !!!
-// Skończyłeś na 13:00 !!!
-// Skończyłeś na 13:00 !!!
-// Skończyłeś na 13:00 !!!
-// Skończyłeś na 13:00 !!!
-// Skończyłeś na 13:00 !!!
-// Skończyłeś na 13:00 !!!
-// Skończyłeś na 13:00 !!!
-// Skończyłeś na 13:00 !!!
-// Skończyłeś na 13:00 !!!
-// Skończyłeś na 13:00 !!!
-// Skończyłeś na 13:00 !!!
-// Skończyłeś na 13:00 !!!
+// dlatego, żeby działłao musi by tak:
+
+greet3();
+function greet3() {
+	console.log('hi!');
+}
+
+var anonymousGreet = function() {
+	console.log('hi!');	
+}
+anonymousGreet();
+
+// Dodatkowo
+
+function log(a) {
+	console.log(a);
+
+	// tutaj możesz też wywołać poniżej przekazaną funkcję jako parametr (linia 262)
+	// a();
+}
+
+log(3); // Wyświetli 3
+log("Hello") // Wyświetli "Hello"
+log({
+	greeting: Hi
+}) // Wyświetli obiekt
+
+// możmey też przekazać funkcję
+log(function() {
+	console.log('Hi');
+});
+
+
+// Lekcja nr 26 "Conceptual aside: By Value VS By Reference"
+
+// By Value
+// Masz screena z kursu w folderze "Sekcja 4"
+// generalnie jak mamy jakąś zmienną 'a', to zajmuje ona jakieś miejsce w pamięci
+// jeśli teraz przypiszemy b=a, to dla 'b' zostanie utworzone nowe miejsce w pamięci, w której będzie skopiowana wartość 'a'
+
+// By Reference 
+// Masz screena z kursu w folderze "Sekcja 4"
+// W tym przypadku jak mamy Obiekt w którym jest 'a' i tworzymy b=a, to 'b', będzie wskazywało na ten sam obiekt
+// wiec 'b' będzie wyznaczane na podstawie referencji. 'b' po prostu będzie wskazywało na wczesniej utworzony obiekt,
+// żaden nowy obiekt nie będzie tworzony itd. nie będzie tworzona kopia tego obiektu.
+// Po prostu mimo tego, że 'a' i 'b' będa miały swoje meijsce w pamięci, to będa wskazywały w to samo miejsce
+
+// Wszystkie obiekty oddziaływują 'by reference'
+
+// Przykłady
+// By Value
+var a = 3;
+var b;
+
+b = a;
+
+// ta dwójka nie wpłynie juz na 'b'
+a = 2;
+console.log(a); // 2
+console.log(b); // 3
+// poniważ to jest by value, to jest utworzona kopia 'a' dla 'b' i kolejne nadpsianie 'a' juz nie wplynie na 'b'
+
+// By Reference (all objects (including functions - bo funkcję to specjalny typ obiektu)
+var c = {
+	greeting: 'hi'
+}
+var d;
+
+d = c;
+
+c.greeting = 'Hello'; // mutate
+// Muttate: To change something
+// "Immutable" means it can't be changed
+
+// 
+console.log(c);
+console.log(d);
+// zobaczymy ten sam obiekt dwa razy! Z {greeting: "Hello"}
+
+// By Reference (even as parameters)
+function changeGreeting(obj) {
+	obj.greeting = 'Hola'; // Mutate
+}
+
+changeGreeting(d);
+console.log(c);
+console.log(d);
+// Znowu będziemy mieli dwa te same obiekty z "Hola"
+
+// UWAGA!
+// Equals operator sets up new memory space (new address in memory)
+
+c = { greeting: 'Howdy'};
+console.log(c); // zwróci 'Howdy'
+console.log(d); // zwróci "Holla"
+// W tym momencie dla 'c' zostanie utworzone nwoe miejsce w pamięci, więc 'c' i 'd' nie będa już wskazywały w to samo miejsce
+// więc conolse.logi zwrócą co innego
+
+// All primitive types - "By Value"
+// All Objects - "By Reference"
