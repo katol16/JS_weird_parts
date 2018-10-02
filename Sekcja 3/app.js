@@ -16,7 +16,7 @@
 // isNew = 'chuj';
 // isNew =1;
 
-// Czyli w niektórych językach porgramowania trzeba podać, ze to bedize boolean, string albo number.
+// Czyli w niektórych językach porgramowania trzeba podać, ze to bedzie boolean, string albo number.
 // W JS nie trzeba tego robić, bo jest 'Dynamic Typing'
 // Oczywiście to ma swoje plusy i minusy, jeśli nie wiesz jak to działa, to może to spowodować problemy
 
@@ -28,7 +28,7 @@
 
 // w JS mamy 6 typów prymitywnych:
 // 1) UNDEFINED - undefined represents lack of exictence (you sholudn't set a variable to this)
-// 2) NULL - represents lack of existence (you can set a variable to this) -  Jeśli chcesz aby zmienna była psuta, to dobrze uzyc "null"
+// 2) NULL - represents lack of existence (you can set a variable to this) -  Jeśli chcesz aby zmienna była psuta, to dobrze użyć "null"
 // 3) BOOLEAN - true or false
 // 4) NUMBER - Floating point number (there's always some decimals). 
 // Unlike other programming languages, there's only 'number' type...and it can make a math weird
@@ -39,7 +39,7 @@
 // Lekcja nr 21 "Conceptual aside: Operators"
 
 // Operator: A special function that is syntactically (written) differently.
-// Genrally, operatos take two parameters and return one result
+// Genrally, operators take two parameters and return one result
 
 
 // Lekcja nr 22 "Operator precedence and associativity"
@@ -85,8 +85,8 @@ console.log(e);
 // Lekcja nr 25 "Comparison Operators"
 
 console.log(1<2<3);// zwróci true
-console.log(3<2<1);// też zwróci true, co jest dziwne, poniżej masz dlaczego tak się dzieję
-// w powyższym przykłądzie dzieje się tak ze względu na Precedence i Associativity
+console.log(3<2<1);// też zwróci true, co jest dziwne, poniżej masz dlaczego tak się dzieję.
+// W powyższym przykładzie dzieje się tak ze względu na Precedence i Associativity
 // Przy znaku '<' czyli 'less then' mamy associativity left to right.
 // Poniważ mamy dwa znaki '<', to mamy ten sam Precedence i left to right associativity
 // Więc to co widzi JS to w sumie będzie console.log(false < 1); 
@@ -113,8 +113,8 @@ console.log(3<2<1);// też zwróci true, co jest dziwne, poniżej masz dlaczego 
 // "3" === 3 // false
 // 0 === false // false
 
-// Pamiętaj! Używaj '===', chyba, że chcesz, zeby coercion zachodziło wtedy mzoesz '=='
-// Na temt '===', masz więcej na MDN
+// Pamiętaj! Używaj '===', chyba, że chcesz, zeby coercion zachodziło wtedy możesz '=='
+// Na temat '===', masz więcej na MDN
 
 
 // Lekcja nr 27 "Existence and Booleans"
@@ -126,10 +126,10 @@ Boolean(""); // false
 var a;
 // tak samo bedzie jak a=0
 
-// własnie w tym przypadku coercion jest przydatne, bo skonwertuje wartosc "a", na boolead, w tym przypadku na false.
+// własnie w tym przypadku coercion jest przydatne, bo skonwertuje wartosc "a", na boolean, w tym przypadku na false.
 if (a) {
 	console.log('Wykona się');
-	// nie ywkona się
+	// nie wykona się
 }
 
 
@@ -182,12 +182,12 @@ greet2('Karol');
 // Pamietaj, że zmienna libraryName jest globalna, siedzi w global execution context
 
 // Jeśli np. przypadkowo nadpiszemy naszą zmienną z biblioteki? 
-// Co zrobić w biblitoekach, żeby zabezpieczyć nasze zmienne przed przypadkowm nadpisaniem?
+// Co zrobić w bibliotekach, żeby zabezpieczyć nasze zmienne przed przypadkowm nadpisaniem?
 // Poniżej przykład
 
-// Więc sprawdzam, czy już w global cotext istnieje libraryName, jesli nie, to ustawiam mu wartość
+// Więc sprawdzam, czy już w global context istnieje libraryName, jeśli nie, to ustawiam mu wartość
 // window.libraryName = window.libraryName || "Lib 2";
-// więc wstawiając taki kob do lib2.js, sprawimy, że libraryName w poniższym przykąłdzie będzie równe "lib1"
+// więc wstawiając taki kod do lib2.js, sprawimy, że libraryName w poniższym przykąłdzie będzie równe "lib1"
 
 // <script src="lib1.js">
 	var libraryName = "lib1";
@@ -198,5 +198,5 @@ greet2('Karol');
 // </script>
 
 // <script src="app.js">
- 	console.log(libraryName); // zwróci 'lib2'
+ 	console.log(libraryName); // zwróci 'lib1'
 // </script>

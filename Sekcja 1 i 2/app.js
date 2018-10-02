@@ -26,7 +26,7 @@ function b() {
 }
 
 // Hoisting, generalnie dalczego tak to działa?
-// Zobacz sobię na orbazek "hoisting w tej sekcji". Masz tam jak jest tworzony
+// Zobacz sobię na obrazek "hoisting w tej sekcji". Masz tam jak jest tworzony
 // Execution Context i widzisz, ze jest tam: Global Obcject, "this", Outer Enviroment i póżniej masz
 // Setup Memory Space for variables and funcitons "Hoisting". Czyli generalnie zanim kod zacznie się wykonwyac linia po lini,
 // to najpierw utworzy taki placeholder w pamięci komputera na nasze zmienne i funkcję. Dlatego powyżej
@@ -211,4 +211,4 @@ console.log('finished execution');
 // Dzieje się tak ponieważ javaScript wykona eventy dopeiro jak execution stack bedzie pusty 
 // (global i ta funkcja, która jest wywoływana w globalnym zakresie)
 // Mimo, że JS jes synchroniczny, to moga tam się wykonwyać asyncrhonicze akcję, ponieważ w przeglądarce
-// oprócz silnika JS, mamy jeszcze inne silniki, mp: Rendering Engine, Http Request.
+// oprócz silnika JS, mamy jeszcze inne silniki, np: Rendering Engine, Http Request.
