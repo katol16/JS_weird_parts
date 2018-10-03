@@ -28,7 +28,7 @@ console.log(person.lastName);
 // object inside object
 person.address = new Object();
 
-// zapsizemys tring w obiekcie address w person
+// zapsizemy string w obiekcie address w person
 person.address.street = "111 Main St.";
 person.address.city = "New York";
 
@@ -36,7 +36,7 @@ console.log(person.address.street);
 console.log(person.address.city);
 console.log(person['address']['city']);
 
-// Z tej lekcji pamietaj, zeby używać '.' zamiast '[]', bo kropka jest czystsza i abrdziej powszechna,
+// Z tej lekcji pamiętaj, żeby używać '.' zamiast '[]', bo kropka jest czystsza i abrdziej powszechna,
 // chyba, ze z jakeigoś powodu potrzebuejsz użyć '[]'.
 // Pamiętaj też , ze metoda na tworzenie obiektów 'new Object();', nie jest najlepsza
 
@@ -540,3 +540,63 @@ console.log(getPerson());
 // i kod jest czytelniejszy
 // Dodawaj dużo komentarzy do kodu! Sam tego nie pożałuejsz,
 // bo nawet jak Tobie przyjdzie znowu pracowac nad twoim kodem, bedziesz lepiej pamiętał o co Ci chodziło
+
+
+// Lekcja nr 44 "Immediately invoked function expressions (IIFE)s"
+
+// function satetement
+function greet(name) {
+	console.log('Hello '+name);
+}
+greet('John');
+
+// using a function expression
+var greetFunc = function(name) {
+	console.log('Hello '+name);
+};
+greetFunc('John');
+
+// using an IIFE
+var greeting = function(name) {
+	console.log('Hello '+name);
+}('John');
+
+
+// Całkowicie poprawne JS expressions i statement (które nie wyjebią błędu):
+3;
+"Hello world";
+{
+	name: 'Karol'
+};
+
+
+// Poniżej wyjebie nam taki błąd:
+// Uncaught SyntaxError: Unexpected token (
+// Dlaczego tak się dzieję? Ponieważ syntax parser wymaga po słowie kluczowym nazwy funkcji.
+// Wymaga, zeby to było function expression, a w naszym przypadku to będzie function statement!
+// UWAGA! Tutaj mamy function statment! A NIE function exporession
+// function(name) {
+// 	return 'Hello ' + name;
+// }
+
+// Więc jeśli chcesz mieć function expression zamiast function statement to robisz taki trik:
+(function(name) {
+	return 'Hello ' + name;
+});
+// dzieje się tak ponieważ wewnątrz nawiasów masz function expression, jak gdyby JS zakłąda, ze wewnatrz nawiasu bedzie zwrocona jakas wartość
+// w ten sposób mamy funckję która istnieje i nic nie robi 
+
+// Pewien przykład, gdzie mamy funckję która coś robi i chcemy ją wykonać, wiec robimy tak:
+var imie = 'John';
+
+(function(name) {
+	console.log('inside IIFE: Hello ' + name);
+}(imie)); // IIFE (klasyczyny przykład)
+
+// UWAGA! Można wywołąć IIFE, na dwa sposoby. Pierwszy powyżej, a drugi poniżej:
+(function(name) {
+	console.log('inside IIFE: Hello ' + name);
+})(imie); 
+// Drugi przykład to wywołanie na zewnątrz. Obie formy poprawne.
+// WYbierz sposó” wywołania IIFE, który według Ciebie jest lepszy i ciagle go używaj.
+
