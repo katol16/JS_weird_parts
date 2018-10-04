@@ -600,3 +600,19 @@ var imie = 'John';
 // Drugi przykład to wywołanie na zewnątrz. Obie formy poprawne.
 // WYbierz sposó” wywołania IIFE, który według Ciebie jest lepszy i ciagle go używaj.
 
+
+// Lekcja nr 45 Framework aside "IIFEs and Safe Code"
+
+// Tworzymy nowy plik greet.js
+// w pliku greet.js tworzymy zmienną greeting, ktora i tak zostanie nadpisna w poniższej funkcji
+
+(function(name) {
+	var greetingTwo = "Hello";
+	console.log(greetingTwo + ' ' + name);
+}('John')); // IIFE
+
+// Pamiętajmy jednak, ze jeśli tutaj zrobimy:
+console.log(greetingTwo); // to wyswietli 'Hola' z pliku greet.js
+
+// wiec plus IIFE, jest taki,z e mam pewność, ze np. zmienna zapsiana w IIFE, nie będzie naruszana przez inny kod
+// ani nie naruszy innego kodu
