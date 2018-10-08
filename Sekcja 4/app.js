@@ -635,9 +635,37 @@ var sayHi = greet('Hi');
 sayHi('Tony');
 // To też się wykona poprawnie. Tylko skąd zwracana funkcja wie (pamięta), jaką wartosc ma zmienna "whattosay". itd.
 // To działa poprawnie właśnie ze względu na CLOUSURES
+// Generalnie CLOUSURES działają tak, że funckja wewnętrza widzi zmienne/argumenty w swoim otoczeniu
 
-// Zobacz tę lekcję ejszcze raz i uzupełnij notatki!!!
-// Zobacz tę lekcję ejszcze raz i uzupełnij notatki!!!
-// Zobacz tę lekcję ejszcze raz i uzupełnij notatki!!!
-// Zobacz tę lekcję ejszcze raz i uzupełnij notatki!!!
-// Zobacz tę lekcję ejszcze raz i uzupełnij notatki!!!
+
+// Lekcja nr 47 "Understanding clousures part 2"
+
+function buildFunctions() {
+	var arr = [];
+
+	for (var i = 0; i < 3; i++) {
+		arr.push(
+			function() {
+				console.log(i);
+			}
+		)
+	}
+
+	return arr;
+}
+
+var fs = buildFunctions();
+
+fs[0]();// zwróci 3
+fs[1]();// zwróci 3
+fs[2]();// zwróci 3
+
+// będzie 3 razy '3'
+
+// DOKOŃĆZ mniej więcej od połowy i Notatki zrób
+// DOKOŃĆZ mniej więcej od połowy i Notatki zrób
+// DOKOŃĆZ mniej więcej od połowy i Notatki zrób
+// DOKOŃĆZ mniej więcej od połowy i Notatki zrób
+// DOKOŃĆZ mniej więcej od połowy i Notatki zrób
+// DOKOŃĆZ mniej więcej od połowy i Notatki zrób
+// DOKOŃĆZ mniej więcej od połowy i Notatki zrób
