@@ -616,3 +616,28 @@ console.log(greetingTwo); // to wyswietli 'Hola' z pliku greet.js
 
 // wiec plus IIFE, jest taki,z e mam pewność, ze np. zmienna zapsiana w IIFE, nie będzie naruszana przez inny kod
 // ani nie naruszy innego kodu
+
+
+// Lekcja nr 46 "Understanding clousures"
+
+function greet(whattosay) {
+	return function(name) {
+		console.log(whattosay + '' + name);
+	}
+}
+
+greet('Hi')('Tony');
+// wywołasz normlanie funkcję greet, a póżniej jej wewnętrzną funkcję i consola zwróci normlanie "Hi Tony"
+// pamiętaj, że greet('Hi'); zwróci funkcję, więc po prostu znowu ją wywołasz ('Tony');
+
+// Tutaj jednak mamy pewne 'dziwne' rzeczy. Przykład:
+var sayHi = greet('Hi');
+sayHi('Tony');
+// To też się wykona poprawnie. Tylko skąd zwracana funkcja wie (pamięta), jaką wartosc ma zmienna "whattosay". itd.
+// To działa poprawnie właśnie ze względu na CLOUSURES
+
+// Zobacz tę lekcję ejszcze raz i uzupełnij notatki!!!
+// Zobacz tę lekcję ejszcze raz i uzupełnij notatki!!!
+// Zobacz tę lekcję ejszcze raz i uzupełnij notatki!!!
+// Zobacz tę lekcję ejszcze raz i uzupełnij notatki!!!
+// Zobacz tę lekcję ejszcze raz i uzupełnij notatki!!!
