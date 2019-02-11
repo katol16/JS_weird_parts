@@ -662,10 +662,211 @@ fs[2]();// zwróci 3
 
 // będzie 3 razy '3'
 
-// DOKOŃĆZ mniej więcej od połowy i Notatki zrób
-// DOKOŃĆZ mniej więcej od połowy i Notatki zrób
-// DOKOŃĆZ mniej więcej od połowy i Notatki zrób
-// DOKOŃĆZ mniej więcej od połowy i Notatki zrób
-// DOKOŃĆZ mniej więcej od połowy i Notatki zrób
-// DOKOŃĆZ mniej więcej od połowy i Notatki zrób
-// DOKOŃĆZ mniej więcej od połowy i Notatki zrób
+// Dzieję się tak ponieważ zmienna "i" jest nadpisywana w pętli. Ostatni jest zapis bedzie i=3 i pętla się skończy
+
+// Teraz żeby otrzymać rezultat 1,2,3 możemy zrobić np:
+// za pomocą ES6
+function buildFunctions2() {
+	var arr = [];
+
+	for (var i = 0; i < 3; i++) {
+		let j = i;
+		arr.push(
+			function() {
+				console.log(j);
+			}
+		)
+	}
+
+	return arr;
+}
+
+var fs2 = buildFunctions2();
+
+fs2[0]();// zwróci 0
+fs2[1]();// zwróci 1
+fs2[2]();// zwróci 2
+
+// za pomocą ES5
+function buildFunctions3() {
+	var arr = [];
+
+	for (var i = 0; i < 3; i++) {
+		arr.push(
+			(function(j) {
+				return function() {
+					console.log(j);
+				}
+			}(i))
+		)
+	}
+
+	return arr;
+}
+
+
+// Lekcja nr 48 "Framework Aside: Function Factories"
+
+// TO nam obrazuje, jaką kolejną przewagę dają nam CLOUSURES
+// Function Factories - Factories means functions that returns or mix other things for you
+
+function makeGreeting(language) {
+	return function(firstname, lastname) {
+		if (language === 'en') {
+			console.log('Hello '+firstname+lastname);
+		}
+
+		if (language === 'es') {
+			console.log('Hola '+firstname+lastname);
+		}
+	}
+}
+
+var greetEnglish = makeGreeting('en');
+var greetSpanish = makeGreeting('es');
+
+greetEnglish('John','Doe');
+greetSpanish('John','Doe');
+
+
+// Lekcja nr 49 "Clousures and Callbacks"
+// Mogłeś już korzystać z Clousures o tym nie wiedziałeś
+// Przykłąd poniżej:
+
+function sayHiLater() {
+	var greeting = 'Hi!';
+
+	setTimeout(function() {
+		console.log(greeting);
+	}, 3000)
+}
+
+sayHiLater();
+
+// jQuery uses function expressions and first-class functions!
+// $("button").lick(function() {
+// 	// zrób coś
+// });
+
+// CALLBACK FUNCTON - A function you give to antoher function, to be run when the other function is finished.
+// So the function you call (i.e.invoke), 'calls back' ny calling the function you gave it when it finishes.
+
+// Przykłąd z CALLBACK Function
+
+function tellMeWhenDone(callback) {
+	var a = 1000; // some work
+	var b = 2000; // some work
+
+	callback(); // the 'callback', it runs the function I give it!
+}
+
+tellMeWhenDone(function() {
+	console.log('I am done!')
+});
+
+tellMeWhenDone(function() {
+	console.log('I am already done!')
+});
+
+
+// Lekcja nr 50 "call(), apply(), bind()"
+
+var person = {
+	firstname: 'John',
+	lastname: 'Doe',
+	getFullName: function() {
+		var fullname = this.firstname + ' ' + this.lastname;
+		return fullname;
+	}
+}
+
+var logName = function(lang1, lang2) {
+	// Poniższe "this" wskażę na obiekt globalny, wiec console.log zwróci błąd.
+	console.log('Logged: ' + this.getFullName());
+	console.log('Arguments: ' + lang1 + ' ' + lang2);
+	console.log('---------');
+	// Poniższy sposób zadziała
+	// console.log('Logged: ' + person.getFullName());
+}
+
+// logName();
+
+// Aby teraz naprawić funkcję logName, tak żeby 'this' wskazywało na person
+// Tworzymy nową funkcję, która jest kopią funckji logName, ale z bind, który powododuje, że "this" wskaże na person
+var logPersonName = logName.bind(person);
+logPersonName('en');
+
+// UWAGA! 2 sposób zapisu tego co powyżej, też porpawny
+
+var logName2 = function(lang1, lang2) {
+	// Poniższe "this" wskażę na obiekt globalny, wiec console.log zwróci błąd.
+	console.log('Logged: ' + this.getFullName());
+
+	// Poniższy sposób zadziała
+	// console.log('Logged: ' + person.getFullName());
+}.bind(person);
+
+logName2();
+
+// call i apply
+// call - od razu wywołuje funkcję, więc nie trzeba robić logName();
+// w call podajesz jako peirwszy argument, to co ma się odowływać do this
+logName.call(person);
+// a po przecinku nastepne parametry
+logName.call(person, 'en', 'es');
+
+// apply - działa jak call
+logName.apply(person);
+// różnica w apply jest taka, że następne parametry podajemy w tablicy
+logName.apply(person, ['en', 'es']);
+
+// Inna metoda wywołąnia funckji za pomocą call i applty
+
+(function(lang1, lang2) {
+	// Poniższe "this" wskażę na obiekt globalny, wiec console.log zwróci błąd.
+	console.log('Logged: ' + this.getFullName());
+	console.log('Arguments: ' + lang1 + ' ' + lang2);
+	console.log('---------');
+	// Poniższy sposób zadziała
+	// console.log('Logged: ' + person.getFullName());
+}).apply(person, ['en', 'es']);
+
+// Możesz się zastanawiać kiedy użyjesz tego w praktyce, dlatego poniżej przykłązd z:
+// function borrowing
+
+var person2 = {
+	firstname: 'Jane',
+	lastname: 'Doe'
+};
+
+// Teraz pożyczymy funkcję z obiektu person do obiektu person2
+person.getFullName.apply(person2);
+console.log(person.getFullName.apply(person2));
+// Powyżej możesz też oczywiście użyć call
+
+// Nastepny przykłąd użycia z wykorzystaniem function currying
+// function currying
+function multiply(a,b) {
+	return a*b;
+};
+
+var multiplyByTwo =  multiply.bind(this, 2);
+
+// Powyższy zapis, to tak jakbyśmy zapisali to w taki sposób:
+// function multiplyByTwo(b) {
+// 	var a =2;
+// 	return a*b;
+// }
+// czyli nie definiujemy tam "this" jako konretny obiekt, wiec przekauzjemy this, bez zmian, ze this=this
+// a "2" to nasz peirwszy parametr "a"
+
+// wywołąnie funckji
+multiplyByTwo(4); // 4 bedzie tu parametrem "b"
+console.log(multiplyByTwo(4));
+
+// stworzymy nową funckję z funckji multiply z innymi defaultowymi parametrami.
+var multiplyByThree =  multiply.bind(this, 3);
+console.log(multiplyByThree(4));
+
+// FUNCTION CURRYING - Creating a copy of a function but with some preset parameters.
+// Very useful in mathematical situations

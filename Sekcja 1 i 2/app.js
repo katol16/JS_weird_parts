@@ -14,7 +14,7 @@
 
 b(); // wywoła porpawnie funkcję
 console.log(a) // poda "undefined"
-// Więc ten kod tutaj, nie wyrzuci błędu, funckja normalnie się wykona
+// Więc ten kod tutaj, nie wyrzuci błędu, funkcja normalnie się wykona
 // zmienna "a" będzie niezdefiniowana "undefined" - ale to nie jest Error
 // Dopiero jak całkiem usuniesz zmienna "a", to dostaneisz "ReferenceError - a is not defined"
 // To jest właśnie Hoisting!
@@ -31,7 +31,7 @@ function b() {
 // Setup Memory Space for variables and funcitons "Hoisting". Czyli generalnie zanim kod zacznie się wykonwyac linia po lini,
 // to najpierw utworzy taki placeholder w pamięci komputera na nasze zmienne i funkcję. Dlatego powyżej
 // jak masz przykłąd ze zmienną "a' (undefined), to działa to tak, ze widzi tę zmienną, bo hoisitng, ale jeszcze nie widzi jaką ma wartość
-// Najpeirw leci ten "Setup Memory Space" dla całego kodu, a później kod się wykonuję linia po lini
+// Najpierw leci ten "Setup Memory Space" dla całego kodu, a później kod się wykonuję linia po lini
 
 // Pamiętaj, że Execution Context wykonuje się w pewnych dwóch fazach (pierwsza faza Execution Context to "Creation pfaze")
 // Druga faza to Execution Phase.

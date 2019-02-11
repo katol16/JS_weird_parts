@@ -1,0 +1,1105 @@
+// Execution Cotenxt and Lexical Environments
+
+	// Execution Context (Global)
+	// Wszystko tam jest wykonywane, i JS tworzy nam w tym Execution Context takie rzeczy:
+	// 	- Global Object (window)
+	// 	- 'this'
+	//  - Outer Enviroment - np. funkcję 
+	//  - Your code
+
+	// In the global level(jak nie jesteś w funckji) -> Global Object = 'this'
+
+
+// The Execution Context - Creation and Hoisting
+
+	b(); // wywoła poprawnie funkcję
+	console.log(a) // poda "undefined"
+	// Więc ten kod tutaj, nie wyrzuci błędu, funkcja normalnie się wykona
+	// zmienna "a" będzie niezdefiniowana "undefined" - ale to nie jest Error
+	// Dopiero jak całkiem usuniesz zmienna "a", to dostaneisz "ReferenceError - a is not defined"
+	// To jest właśnie Hoisting!
+
+	var a = 'Hello world!';
+
+	function b() {
+		console.log('Called b!');
+	}
+
+	// Hoisting, generalnie dalczego tak to działa?
+	// Zobacz sobię na obrazek "hoisting w tej sekcji". Masz tam jak jest tworzony
+	// Execution Context i widzisz, ze jest tam: Global Obcject, "this", Outer Enviroment i póżniej masz
+	// Setup Memory Space for variables and funcitons "Hoisting". Czyli generalnie zanim kod zacznie się wykonwyac linia po lini,
+	// to najpierw utworzy taki placeholder w pamięci komputera na nasze zmienne i funkcję. Dlatego powyżej
+	// jak masz przykłąd ze zmienną "a' (undefined), to działa to tak, ze widzi tę zmienną, bo hoisitng, ale jeszcze nie widzi jaką ma wartość
+	// Najpierw leci ten "Setup Memory Space" dla całego kodu, a później kod się wykonuję linia po lini
+
+	// Pamiętaj, że Execution Context wykonuje się w pewnych dwóch fazach (pierwsza faza Execution Context to "Creation pfaze")
+	// Druga faza to Execution Phase.
+
+// Javascript and 'undefined'
+
+	// Pamietaj, że w JS, undefined i not defined, to nie to samo!!!
+	// not defined wyrzuci błąd!
+	// undefined - to specjalne słowo(SPECIAL KEY WORD) w JS (tak jak 'null' itd.), które mówi, ze zmienna istneije, ale nie ma przypisanej wartości!
+
+	var c;
+
+	if (c === undefined) {
+		console.log('c is undefined');
+	} else {
+		console.log('c is defined');
+	}
+
+	// Nigdy nie rób tak: a = undefined; tzn. nie ustawiaj sam wartości undefined. To może powodować błedy później.
+	// Lepiej żeby JS, sam ustawił udefined, bo przecież i tak to robi.  
+
+
+// The Execution Context: Code execution
+
+	// To po prostu faza w której wykonuję się twój kod, linia po lini.
+
+
+// Conceptual Aside: Single Threaded, Synchronous Execution
+
+	// Synchronous - "one an a time" - jedna linia jest wykonywana, w danym czasie, pozniej przychodzi do następnej
+	// oczywiście są metody Asynchronous, ale w swoim zachowaniu JS jest "Single Threaded, Synchronous"
+
+
+// Function Invocation and the Execution Stack
+
+	// Invocation: Running a function. In JavaScript, by using parenthesis ()
+	// Every function create Execution Context(2 fazy: create and execute)
+
+	// Przykład jak to działa (pokażemy które console.logi wykonają się jako pierwsze)
+
+	function a1() {
+		b1();
+		console.log('Trzeci');
+	}
+
+	function b1() {
+		c1();
+		console.log('Drugi');
+	}
+
+	function c1() {
+		console.log('Pierwszy');
+	}
+
+	function d1() {
+		console.log('Czwarty');
+	}
+
+	a1();
+	d1();
+
+
+// Functions, Context, and Variable Environments
+
+	// Variable Environment: Where the Variables Live and how they relate to each other in memory
+
+	function b2() {
+		// Tu jesteśmy w b2() Execution context
+		var myVar;
+		console.log(myVar);
+	}
+
+	function a2() {
+		// Tu jesteśmy w a2() Execution context
+		var myVar=2;
+		console.log(myVar);
+		b2();
+	}
+
+	var myVar = 1;
+	console.log(myVar);
+	a2();
+	console.log(myVar);
+	// Tu jesteśmy w Global Execution context
+
+	// W consoli wyświetli pokolei
+	// 1, 2, undefined, 1
+	// ta jedynka jest na końcu bo jest SCOPE! Pamietaj o tym!
+
+
+// The Scope Chain
+
+	function b3() {
+		console.log(myVar); // wyświetli 1
+	}
+
+	function a3() {
+		var myVar=2;
+		b3();
+	}
+
+	var myVar = 1;
+	a3();
+
+	// W tym przypadku (powyżej) funckja b3, siedzi fizycznie w Global Execution Context
+
+	// UWAGA! Jesli powyżej zaminimy miejscami a3()  z myvVar czyli bedize:
+	// a3();
+	// var myVar = 1;
+	// To będzie ten sam rezultat, bo pamiętaj, że kązdy Execution Context (np. funkcja), ma dostęp do zewnętrznego środowiska,
+	// czyli jak funkcja b3(), nie znajdzię myVar w swoim wnętrzu, to będzie szukała myVar na zewnątrz, w naszym przypadku będzie to Global Execution Context
+
+	function a4() {
+
+		function b4() {
+			console.log(myVar); // wyświetli 2
+		}	
+
+		var myVar = 2; // jeśli usuniesz tę zmeinną to bedzie znowu w consoli '1', 
+		// bo funkcja b4 szuka wg. scope chain, najpierw w funckji a, 
+		// a póżniej (jeśli nie znajdzie) zgodnie z scope chain w global execution context
+		b4();
+	}
+
+	var myVar = 1;
+	a4();
+
+	// W tym przypadku (powyżej) funckja b4, siedzi fizycznie w a4 Execution Context
+
+
+// Scope, ES6, let
+
+	// Scope: Where a variable is available in your code 
+	// and if it's truly the same variable, or a new copy
+
+	// let - jest "block scoping", więc np nawet w instrukcji if
+
+	{
+		let zmienna = "nie wyswietli w consoli";
+	}
+	// console.log(zmienna); // będzie erro "in not defined"
+
+
+// What about Aynchronous Callbacks?
+
+	// Asynchronous: More then one at a time.
+
+	// W silniku JS mamy też Event Queue - tam sa notyfikację eventów w JS.
+	// Pamietaj, że JS patrzy na Event Queue dopiero jak execution stack jest pusty 
+
+	// Z tą asynchronicznoscią, to jest tak ,że przeglądarka wrzuca asynchronicnzie rzeczy do event queue
+	// ale JS wykonuję się synchronicznie linia po lini. (chyba)
+	// (wydaje mi sie, ze w kursie compelte JS, jest to lepiej tłumaczone)
+
+	// ALe generalnie jest tak, że asynchronicnze callbacki, są możlwie w JS, 
+	// ale sama ta asynchroniczność dzieje się poza silnikiem JS
+
+	// long running function
+	function waitThreeSeconds() {
+		var ms = 3000 +new Date().getTime();
+		while (new Date() < ms){}
+		console.log('finished function');
+	}
+
+	function clickHandler() {
+		console.log('click event!');
+	}
+
+	// listen for the click event
+	document.addEventListener('click', clickHandler);
+
+	waitThreeSeconds();
+	console.log('finished execution');
+	// W powyższym kodzie jeśli nie klikniemy, to po 3 sekundach wywoła "finished funciton", a pozniej "finished exxecution"
+	// Jeśli klinkniemy w ciagu 3 sekund kiedy funkcja 'waiThreeSeconds' jest wykonywana, to (po 3 sekundach) bedzie:
+	// "finished funciton", a pozniej "finished exxecution" a na koniec "click event".
+	// Dzieje się tak ponieważ javaScript wykona eventy dopeiro jak execution stack bedzie pusty 
+	// (global i ta funkcja, która jest wywoływana w globalnym zakresie)
+	// Mimo, że JS jes synchroniczny, to moga tam się wykonwyać asyncrhonicze akcję, ponieważ w przeglądarce
+	// oprócz silnika JS, mamy jeszcze inne silniki, np: Rendering Engine, Http Request.
+
+
+// Conceptual aside: Types and JavaScript
+
+	// Dynamic Typing: You don't tell the engine what type of data a varibale holds, it figures it out while Your code is running
+
+	// Variables can hold different types of values because it's figured out during execution
+
+	// Static Typing (np. w C# albo w JAVA)
+	// bool isNew = "Chuj"; // Zwróci błąd
+
+	// Dynamic Typing 
+
+	// Nie będzie błędów
+	// var isNew = true; 
+	// isNew = 'chuj';
+	// isNew =1;
+
+	// Czyli w niektórych językach porgramowania trzeba podać, ze to bedzie boolean, string albo number.
+	// W JS nie trzeba tego robić, bo jest 'Dynamic Typing'
+	// Oczywiście to ma swoje plusy i minusy, jeśli nie wiesz jak to działa, to może to spowodować problemy
+
+// Primitive Types
+
+	// Primitive type: A type of data that represent a single value
+	// That is not an object
+
+
+	// w JS mamy 6 typów prymitywnych:
+	// 1) UNDEFINED - undefined represents lack of exictence (you sholudn't set a variable to this)
+	// 2) NULL - represents lack of existence (you can set a variable to this) -  Jeśli chcesz aby zmienna była psuta, to dobrze użyć "null"
+	// 3) BOOLEAN - true or false
+	// 4) NUMBER - Floating point number (there's always some decimals). 
+	// Unlike other programming languages, there's only 'number' type...and it can make a math weird
+	// 5) STRING - a sequence of characters (both '' and "" can be used)
+	// 6) SYMBOL - Used in ES6 (the next version of JavaScript). We won't talk about this here...
+
+
+// Conceptual aside: Operators
+
+	// Operator: A special function that is syntactically (written) differently.
+	// Genrally, operators take two parameters and return one result
+
+
+	// Operator precedence and associativity
+
+	// Operator precedence: Which operator function gets called first.
+	// Function are called in orderd of precedence (HIGHER precedence wins)
+
+	// Associativity: What order operator functions get called in: Left-to-right or Right-to-left
+	// When functions have the same precedence
+
+	// Przykłady 
+	var a = 3+4*5;
+	console.log(a);
+	// na MDN masz też sporo o Operator precedence, masz tam też listę od najwyższych "precedence" do najniższych
+
+	// Co się dzieję gdy funckje maja ten sam numer "precedence"
+	var a = 2, b = 3, c = 4;
+
+	a = b = c;
+
+	// dla operatora "=" mamy assiociativity "right-to-left"
+	// więc na początku wywołuje " b=c "
+	console.log(a);
+	console.log(b);
+	console.log(c);
+	// wszystkie będa równe 4 
+
+	// Jeśli kilka operatorów ma takie same "Precedence", to JS sprawdza associativity, które jest albo left-to-tight albo right-to-left
+
+
+// Conceptual aside: Coercion
+
+	// Coercion: Converting a value from one type to another 
+	// This happens quite often in Javascript because it's dynamically typed.
+
+	var e = 1 + '2';
+	console.log(e);
+	// będzie 12
+	// Stało się tak ponieważ ta 1, została skonwertowana przez JS na string
+	// Ponieważ JS jest dynamiclly type, intuicyjnie sam stara się skonwertować odpowiednie wartości
+
+
+// Comparison Operators
+
+	console.log(1<2<3);// zwróci true
+	console.log(3<2<1);// też zwróci true, co jest dziwne, poniżej masz dlaczego tak się dzieję.
+	// W powyższym przykładzie dzieje się tak ze względu na Precedence i Associativity
+	// Przy znaku '<' czyli 'less then' mamy associativity left to right.
+	// Poniważ mamy dwa znaki '<', to mamy ten sam Precedence i left to right associativity
+	// Więc to co widzi JS to w sumie będzie console.log(false < 1); 
+	// A ponieważ false jest przez coercion konwertowane na zero, to zwraca nam "true"
+	// console.log(Number(false)); zwróci 0
+
+	// 3 == 3 // zwróci true
+	// '3' == 3 // zwróci true
+	// false == 0 // true
+	// "" == 0 // true
+
+	// To wszystko powyżej dzieje się ponieważ zachodzi coercion
+	// Jeśli chcemy, żeby coercion nie zachodziło, to robimy '==='
+
+	// Uwaga! Coercion zachodzi w inny sposób dla null np:
+	// null == 0 // zwróci false
+	// null < 0 // zwróci true
+	// Czyli w niektórych przypadkach null jest konwertowany na zero, a w niektórych nie jest
+
+	// Pamiętaj, że coercion może powodować problemy, dlatego warto używać '==='
+	// w tym przypadku, nie będzie konwertował wartości
+	// 3 === 3 // true
+	// "3" === "3" // true
+	// "3" === 3 // false
+	// 0 === false // false
+
+	// Pamiętaj! Używaj '===', chyba, że chcesz, zeby coercion zachodziło wtedy możesz '=='
+	// Na temat '===', masz więcej na MDN
+
+
+// Existence and Booleans
+
+	Boolean(undefined); // false
+	Boolean(null); // false
+	Boolean(""); // false
+
+	var a;
+	// tak samo bedzie jak a=0
+
+	// własnie w tym przypadku coercion jest przydatne, bo skonwertuje wartosc "a", na boolean, w tym przypadku na false.
+	if (a) {
+		console.log('Wykona się');
+		// nie wykona się
+	}
+
+
+// Default values
+
+	// Pamiętaj, że "lub" czyli || moze zwracać konkretną wartość, a nie tylko true/false
+	// undefined || "hello" // zwróci "hello"
+	// null || "hello" // zwróci "hello"
+	// "" || "hello" // zwróci "hello"
+
+	function greet(name) {
+		console.log('Hello ' + name);
+		// wyświetli 'Hello undefined'
+	}
+
+	greet();
+
+	// Teraz funkcja z ustawioną wartością defaultową
+	function greet2(name) {
+		name = name || '<Your name here>'
+		console.log('Hello ' + name);
+	}
+
+	greet2();
+	greet2('Karol');
+
+
+// Framework aside: default values
+
+	// Załóżmy, ze do swojej apki podpinasz 2 bilbioteki i swój skrypt
+	// czyli:
+	// <script src="lib1.js"></script>
+	// <script src="lib2.js"></script>
+	// <script src="app.js"></script>
+	// Pamiętaj, że ten kod wykona się tak jakby był w pojedynczym pliku
+
+	// i masz tam taki kod 
+	// <script src="lib1.js">
+		var libraryName = "lib1";
+	// </script>
+
+	// <script src="lib2.js">
+		var libraryName = "lib2";
+	// </script>
+
+	// <script src="app.js">
+	 	console.log(libraryName); // zwróci 'lib2'
+	// </script>
+
+	// Pamietaj, że zmienna libraryName jest globalna, siedzi w global execution context
+
+	// Jeśli np. przypadkowo nadpiszemy naszą zmienną z biblioteki? 
+	// Co zrobić w bibliotekach, żeby zabezpieczyć nasze zmienne przed przypadkowm nadpisaniem?
+	// Poniżej przykład
+
+	// Więc sprawdzam, czy już w global context istnieje libraryName, jeśli nie, to ustawiam mu wartość
+	// window.libraryName = window.libraryName || "Lib 2";
+	// więc wstawiając taki kod do lib2.js, sprawimy, że libraryName w poniższym przykąłdzie będzie równe "lib1"
+
+	// <script src="lib1.js">
+		var libraryName = "lib1";
+	// </script>
+
+	// <script src="lib2.js">
+		window.libraryName = window.libraryName || "Lib 2";
+	// </script>
+
+	// <script src="app.js">
+	 	console.log(libraryName); // zwróci 'lib1'
+	// </script>
+
+
+// Objects and Functions
+
+// Objects and the Dot
+
+	// Object - może mieć: Primitive "property", Object "property", Function "method"
+
+	// Poniższy sposób na stworzenie obiektu nie jest najlepszy, ale tutaj dla celów demonstracyjnych go użyjemy
+	var person = new Object();
+
+	// ustawimy mu pewną property (Primitive property - string), za pomoca operatora []
+	// generalnei za pomocą operatora [], mamy dostęp do wartości (property) obiektów
+	// możemy tworzyć nowe wartości lub edytować stare
+	person["firstName"] = "Tony";
+	person["lastName"] = "Smitch";
+
+	var firstNameProperty = 'firstName';
+
+	console.log(person);
+	console.log(person[firstNameProperty]);
+
+	// Bardziej powszechny operator do edytowania i ustawiania wartości w obiektach to "."
+	// aczkolwiek peirwszy operator z [], tez jest przydatny
+	// Poniżej przykłady
+
+	console.log(person.firstName);
+	console.log(person.lastName);
+
+	// object inside object
+	person.address = new Object();
+
+	// zapsizemy string w obiekcie address w person
+	person.address.street = "111 Main St.";
+	person.address.city = "New York";
+
+	console.log(person.address.street);
+	console.log(person.address.city);
+	console.log(person['address']['city']);
+
+	// Z tej lekcji pamiętaj, żeby używać '.' zamiast '[]', bo kropka jest czystsza i abrdziej powszechna,
+	// chyba, ze z jakeigoś powodu potrzebuejsz użyć '[]'.
+	// Pamiętaj też , ze metoda na tworzenie obiektów 'new Object();', nie jest najlepsza
+
+
+// Objects and Objects Literals
+
+	// skrót do tworzenia obiektu, nazywany "Object literal"
+	var person2 = {};
+
+	// plusem tego rozwiazania, jest to, że mozesz od razu wprwoadzać key-value pair do obiektu
+	// więc szybciej się tworzy (pisze) takie obiekty
+	var person3 = {
+		firstName: 'Karol',
+		lastName: 'Vogelgezang',
+		address: {
+			street: 'Sobieskiego 16',
+			city: 'Narol'
+		}
+	};
+
+	console.log(person3);
+
+	// przykład z funkcją i przekazaniem obiektu do funkcji
+	var Karol = {
+		firstName: 'Karol',
+		lastName: 'Vogelgezang',
+		address: {
+			street: 'Sobieskiego 16',
+			city: 'Narol'
+		}
+	}; 
+
+	function greet(person) {
+		console.log('Hi ' + person.firstName);
+	}
+
+	greet(Karol);
+
+	// Pamietaj, że możesz też wywołać funkcję z obiektem utworzonym w locie, za pomoca {}
+	greet({firstName: 'Mary', lastName: "Smith"});
+
+	// dodanie adresu
+	Karol.address2 = {
+		street: 'Sobieskiego'
+	}
+
+
+// Framework aside: Faking Namespaces
+
+	// Namespace: A container for variables and functions
+	// Typically to keep variables and functions with the same name seperate
+
+	// Teraz o co chodzi z tym "Faking namespaces"
+
+	var greet2 = 'Hello!';
+	var greet2 = 'Hola!';
+
+	console.log(greet2);
+
+	// Generalnie tych faking namespaces używamy przy budownaiu np. frameworka, albo biblioteki
+	// Chodzi o to, żeby tworzyć dla naszych zmiennych pewien konterner w postaci obiektu,
+	// żeby te zmeinne nie były dostępne globalnie i nikt ich nie nadpisał
+
+	// Poniżej dwa sposby jak możesz taki kontener utworzyć
+	// "engilsh" jest przykładem gdzie musimy bardziej zagnieździć nasz kontener
+	var english = {
+		greetings: {
+			basic: 'Hello!'
+		}
+	};
+
+	var spanish = {};
+
+	spanish.greet = 'Hola!';
+
+	console.log(english.greetings);
+	console.log(spanish.greet);
+
+
+// JSON and Object Literals
+
+	// JSON - JavaScript Object Notation. Jest inspirowany przez Object Literals, wyglada podobnie,
+	// ale błędem jest myślenie, że to to samo! 
+
+	var objectLiteral = {
+		firstName: 'Mary',
+		isAProgrammer: true
+	}
+
+	console.log(objectLiteral);
+
+	// Teraz mała uwaga. Kiedyś dane były wysyłane/odbierane w internecie w formacie xml
+	// np:
+	// <object>
+	// 	<firstName>Mary</firstname>
+	// 	<isAProgrammer>true</isAProgrammer>
+	// </object>
+	// ale było to mało wydajne, bo zauważ ile chociażby znaków trzeba użyć do takiego formatu danych
+	// Stąd programiści zainspirowani Object Literals, wpadli na pomysł JSON'a
+
+	// JSON:
+	// Pamiętaj, że proporties, musza być w cudzysłowie ("").
+	// Pamietaj, że to jest również poprawny Object Literal, bo proporties mogą być w "" w Object Literals
+	// ale MOGĄ! A w JSON MUSZĄ
+	// Wieć można powiedzieć, że każdy JSON, jest Object Literal, ale nie każdy Object Literal jest JSON'em
+	// {
+	// 	"firstName": "Mary",
+	// 	"isAProgrammer": true	
+	// }
+
+	// Ponieważ JSON, jest łatwo czytany i kownertowany w JS, to często w JS używamy JSON'a
+
+	console.log(JSON.stringify(objectLiteral));
+
+	// podobnie poniżej. Weźmie JSON'a i zamieni go w obiekt
+	var jsonValue = JSON.parse('{"firstName": "Mary","isAProgrammer": true }');
+	console.log(jsonValue);
+
+
+// Functions are Objects
+
+	// Functions are Objects
+
+	// First Class Functions: Everything you can do with other types(object, strings, booleans) you can do with functions.
+	// Assign them to variables, pass them (functions)  around, creare them on the fly.
+
+	// Function is a special type of Obect!
+	// Ponieważ funkcje to specjalne obiekty, możesz do nich (funkcji) dołączyć: Primitive, Object, Function
+	// Ukryte specjalne włąściwości funkcji: 
+	// Name - Optional, can by anonymous (generalnie imie funkcji)
+	// CODE - Tutaj siedzą linie kodu, które napisałeś w funkcji (ciało funkcji, body of a function)
+
+	// Czyli funckja, która napsiałeś, jest obiektem, który korzysta z wielu właściwości
+	// np. kod, który napsiałes siedzi we właściwości i korzysta z właściwości "CODE"
+
+	// Przykład, do tego co jest w opisie o funkcjach
+	function greet() {
+		console.log('Hi');
+	}
+
+	// ponieważ funckje to obikety, możemy po kropce się odwołać i dodać właściwość do funkcji
+	greet.language = "english";
+	console.log(greet); // dostaneisz tekst całej funkcji, którą napsiałeś
+	console.log(greet.language); // zwróci 'english'
+
+
+// Function Statements and Function Expressions
+
+	// Expression: A unit of a code that results in a Value
+	// It doesn't have to save to a variable
+	// Expression returns a value! 
+	// Przykłady: 
+	// a = 3;
+	// 1 + 2;
+	// a = {greeting: 'hi'}
+
+	// Statement: np. 'if', czyli statement, tylko robi jakąs robotę, ale wartość zwraca expression
+	// var a;
+	// if (a===3) {
+		// wewnątrz już będzie expression, bo if zwróci 'true' lub 'false'
+	// }
+
+	// Function statement
+	// bo nie zwraca żadnej wartości
+	greet3();
+	function greet3() {
+		console.log('hi!');
+	}
+
+	// Function expression
+	// (Poniżej) bo masz '=' masz jakąś zmienną, która posiada jakąś wartość (w tym przypadku funkcję - czyli special object)
+	var anonymousGreet = function() {
+		console.log('hi!');	
+	}
+
+	// wywołanie powżyszej funkcji normalnie po zmiennej: anonymousGreet();
+	anonymousGreet();
+
+	// UWAGA!
+	// jak zrobimy tak:
+		// anonymousGreet();
+		// var anonymousGreet = function() {
+		// 	console.log('hi!');	
+		// }
+	// to będzie 'udefined is not a function', ze względu na hoisting! Pamiętaj!
+	// Pamiętaj też, że to zadziałą normalnie
+		// greet3();
+		// function greet3() {
+		// 	console.log('hi!');
+		// }
+	// Hoisting jesli widzi funkcję w creation phase to ją zapisuje w pamieci, dla zmiennych tworzy miejsce i daje undefined w creation phase
+	// Function expressions are not HOISTED!
+	// JS is variable HOISTED! 
+
+	// dlatego, żeby działało musi by tak:
+
+	greet3();
+	function greet3() {
+		console.log('hi!');
+	}
+
+	var anonymousGreet = function() {
+		console.log('hi!');	
+	}
+	anonymousGreet();
+
+	// Dodatkowo
+
+	function log(a) {
+		console.log(a);
+
+		// tutaj możesz też wywołać poniżej przekazaną funkcję jako parametr (linia 262)
+		// a();
+	}
+
+	log(3); // Wyświetli 3
+	log("Hello") // Wyświetli "Hello"
+	log({
+		greeting: 'Hi'
+	}) // Wyświetli obiekt
+
+	// możmey też przekazać funkcję
+	log(function() {
+		console.log('Hi');
+	});
+
+
+// Conceptual aside: By Value VS By Reference
+
+	// By Value
+	// Masz screena z kursu w folderze "Sekcja 4"
+	// generalnie jak mamy jakąś zmienną 'a', to zajmuje ona jakieś miejsce w pamięci
+	// jeśli teraz przypiszemy b=a, to dla 'b' zostanie utworzone nowe miejsce w pamięci, w której będzie skopiowana wartość 'a'
+
+	// By Reference 
+	// Masz screena z kursu w folderze "Sekcja 4"
+	// W tym przypadku jak mamy Obiekt w którym jest 'a' i tworzymy b=a, to 'b', będzie wskazywało na ten sam obiekt
+	// wiec 'b' będzie wyznaczane na podstawie referencji. 'b' po prostu będzie wskazywało na wczesniej utworzony obiekt,
+	// żaden nowy obiekt nie będzie tworzony itd. nie będzie tworzona kopia tego obiektu.
+	// Po prostu mimo tego, że 'a' i 'b' będa miały swoje meijsce w pamięci, to będa wskazywały w to samo miejsce
+
+	// Wszystkie obiekty oddziaływują 'by reference'
+
+	// Przykłady
+	// By Value
+	var a = 3;
+	var b;
+
+	b = a;
+
+	// ta dwójka nie wpłynie juz na 'b'
+	a = 2;
+	console.log(a); // 2
+	console.log(b); // 3
+	// poniważ to jest by value, to jest utworzona kopia 'a' dla 'b' i kolejne nadpsianie 'a' juz nie wplynie na 'b'
+
+	// By Reference (all objects (including functions - bo funkcję to specjalny typ obiektu)
+	var c = {
+		greeting: 'hi'
+	}
+	var d;
+
+	d = c;
+
+	c.greeting = 'Hello'; // mutate
+	// Muttate: To change something
+	// "Immutable" means it can't be changed
+
+	// 
+	console.log(c);
+	console.log(d);
+	// zobaczymy ten sam obiekt dwa razy! Z {greeting: "Hello"}
+
+	// By Reference (even as parameters)
+	function changeGreeting(obj) {
+		obj.greeting = 'Hola'; // Mutate
+	}
+
+	changeGreeting(d);
+	console.log(c);
+	console.log(d);
+	// Znowu będziemy mieli dwa te same obiekty z "Hola"
+
+	// UWAGA!
+	// Equals operator sets up new memory space (new address in memory)
+
+	c = { greeting: 'Howdy'};
+	console.log(c); // zwróci 'Howdy'
+	console.log(d); // zwróci "Holla"
+	// W tym momencie dla 'c' zostanie utworzone nwoe miejsce w pamięci, więc 'c' i 'd' nie będa już wskazywały w to samo miejsce
+	// więc conolse.logi zwrócą co innego
+
+	// All primitive types - "By Value"
+	// All Objects - "By Reference"
+
+
+// Objects, Functions, and 'this'
+
+	// UWAGA! W zależności od tego gdzie żyje funkcja i jak jest wywołana, będzie zależeć wskazania na obiekt 'this'
+	// Przykłady:
+
+	console.log(this); // wskaże na window, na tym poziomie wskazuje an global object czyli window
+
+	function aF() {
+		console.log(this); // znowu będzie to window! Zapamiętaj!
+	}
+
+	// Jeśli zwyczajnie wywołasz funckje, to w powyższej consoli zobaczysz, ze'this' wskazuję na window!
+	aF();
+
+
+	var b = function() {
+		console.log(this);
+	}
+	// znowu 'this' wskaże na window!
+	b();
+
+	// Tworząc function statement, albo function expressions, 'this' będzie wskazywało na globalny obiekt
+
+
+	var c = {
+		name: 'The C Object',
+		secondName: 'Imie',
+		log: function() {
+			console.log(this); // zwróci obiekt c
+
+			this.secondName = 'Drugie imie'
+			console.log(this); // zwróci obiekt 'c' z secondName równym 'Drugie imie'		
+
+			// Poniżej pokażemy coś co wielu ludzi uważa za błąd w języku JS
+			var setname = function(newname) {
+				// 'this' ttuaj wskaże na global object 'window'
+				this.name = newname;
+			}
+			setname('Updated name in C  Object');
+			// Tutaj będziemy oczekiwać, że w poniższym console.log, zwróci obiekt z wartością name = 'Updated name in C  Object'
+			console.log(this);
+			// Okazuje się, że nie. W obiekcie 'c', name będzie wciąż jako 'The C Object'!
+			// Dzieję się tak daltego, że 'this' w funkcji setname, wskazuję na window
+			// czyli funkcję wewnątrz funkcji(metody) mają problem i kierują 'this' na 'window'
+
+			// żeby powyższy problem rozwiązać, robimy coś co nazywamy często "that" lub "self"
+			// Sposób tego rozwiazania działa, ponieważ obiekt zapisywane sa w pamięci za pomocą "reference"
+			// Poniżej pokażemy rozwiazanie w metodzie log2 (właśnie z self lub that)
+		},
+		log2: function() {
+			var self = this;
+
+			self.secondName = 'Drugie imie'
+			console.log(self); // zwróci obiekt 'c' z secondName równym 'Drugie imie'		
+
+			var setname = function(newname) {
+				// Ważne!
+				// 'self' wskaże teraz na obiekt 'c' !!!
+				self.name = newname;
+			}
+			setname('Updated name in C  Object');
+			console.log(self);
+		}
+	}
+
+	c.log();
+	c.log2();
+	// Kiedy funckja jest metodą danego obiektu, to w tej funkcji 'this', wskazuje na ten obiekt
+
+	// Pamiętaj też, ze po części 'let' załatwia ten problem (ale chuj wie w jakim stopniu, bo gość nie mówił)
+
+
+// Arrays - Collections of Anything
+
+	// Array literal syntax
+	var arr = [1,2,3];
+
+	// W innych językach programowania, tablice mogą przechowywać konretny typ danych, np. Numbers, strings itd.
+	// W JS, mozesz w jednej tablicy mieć wszystko
+
+	var arr = [
+		1,
+		false,
+		{
+			name: 'Karol',
+			age: 27
+		},
+		function(name) {
+			var greeting = 'Hello';
+			console.log(greeting + name);
+		},
+		'hello'
+	];
+
+	console.log(arr);
+	arr[3](arr[2].name); // zwróci "Hello Karol"
+
+
+// 'Arguments' and Spread
+
+	// Arguments: Przechowuje listę wszystkich parametrów, które przekazujesz do funkcji.
+	// Arguments: The pamaters you pass to a function
+	// JavaScript gives you a keyword of the same name which contains them all
+
+	function greet(firstname, lastname, language) {
+
+		// Możemy ustawić jakiś język jako defaultowy
+		language = language || 'En';
+
+		console.log(firstname);
+		console.log(lastname);
+		console.log(language);
+		console.log('------------');
+		// Poniżej otrzymamy listę (Nodelist) parametrów, które rpzekazujemy do funkcji
+		// Trzeba pamietac, że argumenty zostaną zwrócone w nodelist a nie w tablicy!
+		console.log(arguments);
+	}
+
+	// W wielu językach programowania, takie wywolanie funkjci spowoduje błąd
+	// W JS, nie musimy przekazywać parametrów i funkcja sie normalnie wykona, tylko zwróci 3 razy undefined
+	// Hoisting to za ciebie załatwia, ze przygotwouje miejsce w pamieci dla tych parametrów, nawet jak ich nie dostarczysz
+	greet(); // 3 x 'undefined'
+
+	greet('John'); // John i 2 x 'undefined'
+	greet('John', 'Doe', 'Es'); // John Doe Es
+
+
+	// Jeśli chcemy, żeby funkcja nie robiła nic, jak nie przekażemy parametrów to można zrobić cos takiego:
+	function greet2a(firstname, lastname, language) {
+
+		// Możemy ustawić jakiś język jako defaultowy
+		language = language || 'En';
+
+		if (arguments.length === 0 ) {
+			console.log('Nie ma parametrów');
+			console.log('--------');
+			return;
+		}
+
+		console.log(firstname);
+		console.log(lastname);
+		console.log(language);
+		console.log('------------');
+		// Poniżej otrzymamy listę (Nodelist) parametrów, które rpzekazujemy do funkcji
+		// Trzeba pamietac, że argumenty zostaną zwrócone w nodelist a nie w tablicy!
+		console.log(arguments);
+	}
+	greet2a();
+
+	// Spread operator: (jeszcze chyba nie dostępny)
+
+	// function greet(firstname, lastname, language , ...other) {
+
+	// }
+	// greet(x,y,z,a,b,c);
+	// Dzięki '...other' możemy przekazywać więcej parametrów i wszystkie będa w liście arguments
+
+
+// Framework aside "Function overloading"
+
+	// Function overloading, wystepuje chyba bardziej w innych językach programownaia
+	// W JS chyba mniej
+
+
+// Conceptual aside "Syntax parsers"
+
+
+// Dangerous aside "Automatic semicolon insertion"
+
+	// w JS, dodawanie ';' teoretycznie nie jest wymagane, bo silnik JS, sam stara się domyśleć gdzie go wstawić
+	// i wstawia go za nas. 
+	// UWAGA! Takie zachowanie JS, moze doprowadzić do błędów, które ciężko zlokalizować
+	// Dlatego musisz ZAWSZE sam dodawać ';' !!!
+
+	// Przykłady błędów związane z insertion ';'
+
+	function getPerson() {
+
+		return // tutaj silnik JS zrobi insertion i doda ';'
+		// przez co w consoli zwróci undefined
+		// robi tak dlatego, ze jak widzi, ze programista dał enter, to znaczy 
+		// ,że chce przejść do następnej linii i wtedy silnik daje insertion ';'
+		{
+			firstname: 'Tony'
+		}
+
+		// aby to naprawić wystraczy zrobić
+		// return {
+		// 	firstname: 'Tony'
+		// }
+
+		// WAŻNE !!!
+		// DLATEGO ZAWSZE DAWAJ '{'' W TEJ SAMEJ LINI JAK POWYŻEJ
+	}
+
+	// zwróci undefined
+	console.log(getPerson());
+
+
+// Framework aside "Whitespace"
+
+	// Whitespace: Invisible characters that create literal 'space' in Your written code
+	// Carriage returns, tabs, spaces.
+	// Generalnie JS, ignoruje spację i daję to plus, bo możesz dawać komentarze pomiędzy
+	// i kod jest czytelniejszy
+	// Dodawaj dużo komentarzy do kodu! Sam tego nie pożałujesz,
+	// bo nawet jak Tobie przyjdzie znowu pracować nad twoim kodem, bedziesz lepiej pamiętał o co Ci chodziło
+
+
+// Immediately invoked function expressions (IIFE)s
+
+	// function satetement
+	function greet(name) {
+		console.log('Hello '+name);
+	}
+	greet('John');
+
+	// using a function expression
+	var greetFunc = function(name) {
+		console.log('Hello '+name);
+	};
+	greetFunc('John');
+
+	// using an IIFE
+	var greeting = function(name) {
+		console.log('Hello '+name);
+	}('John');
+
+
+	// Całkowicie poprawne JS expressions i statement (które nie wyjebią błędu):
+	3;
+	"Hello world";
+	{
+		name: 'Karol'
+	};
+
+
+	// Poniżej wyjebie nam taki błąd:
+	// Uncaught SyntaxError: Unexpected token (
+	// Dlaczego tak się dzieję? Ponieważ syntax parser wymaga po słowie kluczowym nazwy funkcji.
+	// Wymaga, zeby to było function expression, a w naszym przypadku to będzie function statement!
+	// UWAGA! Tutaj mamy function statment! A NIE function exporession
+	// function(name) {
+	// 	return 'Hello ' + name;
+	// }
+
+	// Więc jeśli chcesz mieć function expression zamiast function statement to robisz taki trik:
+	(function(name) {
+		return 'Hello ' + name;
+	});
+	// dzieje się tak ponieważ wewnątrz nawiasów masz function expression, jak gdyby JS zakłąda, ze wewnatrz nawiasu bedzie zwrocona jakas wartość
+	// w ten sposób mamy funckję która istnieje i nic nie robi 
+
+	// Pewien przykład, gdzie mamy funckję która coś robi i chcemy ją wykonać, wiec robimy tak:
+	var imie = 'John';
+
+	(function(name) {
+		console.log('inside IIFE: Hello ' + name);
+	}(imie)); // IIFE (klasyczyny przykład)
+
+	// UWAGA! Można wywołąć IIFE, na dwa sposoby. Pierwszy powyżej, a drugi poniżej:
+	(function(name) {
+		console.log('inside IIFE: Hello ' + name);
+	})(imie); 
+	// Drugi przykład to wywołanie na zewnątrz. Obie formy poprawne.
+	// WYbierz sposó” wywołania IIFE, który według Ciebie jest lepszy i ciagle go używaj.
+
+
+	// Lekcja nr 45 Framework aside "IIFEs and Safe Code"
+
+	// Tworzymy nowy plik greet.js
+	// w pliku greet.js tworzymy zmienną greeting, ktora i tak zostanie nadpisna w poniższej funkcji
+
+	(function(name) {
+		var greetingTwo = "Hello";
+		console.log(greetingTwo + ' ' + name);
+	}('John')); // IIFE
+
+	// Pamiętajmy jednak, ze jeśli tutaj zrobimy:
+	console.log(greetingTwo); // to wyswietli 'Hola' z pliku greet.js
+
+	// wiec plus IIFE, jest taki,z e mam pewność, ze np. zmienna zapsiana w IIFE, nie będzie naruszana przez inny kod
+	// ani nie naruszy innego kodu
+
+
+// Understanding clousures
+
+	function greet(whattosay) {
+		return function(name) {
+			console.log(whattosay + '' + name);
+		}
+	}
+
+	greet('Hi')('Tony');
+	// wywołasz normlanie funkcję greet, a póżniej jej wewnętrzną funkcję i consola zwróci normlanie "Hi Tony"
+	// pamiętaj, że greet('Hi'); zwróci funkcję, więc po prostu znowu ją wywołasz ('Tony');
+
+	// Tutaj jednak mamy pewne 'dziwne' rzeczy. Przykład:
+	var sayHi = greet('Hi');
+	sayHi('Tony');
+	// To też się wykona poprawnie. Tylko skąd zwracana funkcja wie (pamięta), jaką wartosc ma zmienna "whattosay". itd.
+	// To działa poprawnie właśnie ze względu na CLOUSURES
+	// Generalnie CLOUSURES działają tak, że funckja wewnętrza widzi zmienne/argumenty w swoim otoczeniu
+
+
+// Understanding clousures part 2
+
+	function buildFunctions() {
+		var arr = [];
+
+		for (var i = 0; i < 3; i++) {
+			arr.push(
+				function() {
+					console.log(i);
+				}
+			)
+		}
+
+		return arr;
+	}
+
+	var fs = buildFunctions();
+
+	fs[0]();// zwróci 3
+	fs[1]();// zwróci 3
+	fs[2]();// zwróci 3
+
+	// będzie 3 razy '3'
+
+	// Dzieję się tak ponieważ zmienna "i" jest nadpisywana w pętli. Ostatni jest zapis bedzie i=3 i pętla się skończy
+
+	// Teraz żeby otrzymać rezultat 1,2,3 możemy zrobić np:
+		function buildFunctions2() {
+		var arr = [];
+
+		for (var i = 0; i < 3; i++) {
+			let j = i;
+			arr.push(
+				function() {
+					console.log(j);
+				}
+			)
+		}
+
+		return arr;
+	}
+
+	var fs2 = buildFunctions2();
+
+	fs2[0]();// zwróci 3
+	fs2[1]();// zwróci 3
+	fs2[2]();// zwróci 3
