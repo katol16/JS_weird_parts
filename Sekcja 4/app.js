@@ -749,7 +749,7 @@ sayHiLater();
 // });
 
 // CALLBACK FUNCTON - A function you give to antoher function, to be run when the other function is finished.
-// So the function you call (i.e.invoke), 'calls back' ny calling the function you gave it when it finishes.
+// So the function you call (i.e.invoke), 'calls back' by calling the function you gave it when it finishes.
 
 // Przykłąd z CALLBACK Function
 
@@ -823,7 +823,6 @@ logName.apply(person, ['en', 'es']);
 // Inna metoda wywołąnia funckji za pomocą call i applty
 
 (function(lang1, lang2) {
-	// Poniższe "this" wskażę na obiekt globalny, wiec console.log zwróci błąd.
 	console.log('Logged: ' + this.getFullName());
 	console.log('Arguments: ' + lang1 + ' ' + lang2);
 	console.log('---------');
@@ -870,3 +869,48 @@ console.log(multiplyByThree(4));
 
 // FUNCTION CURRYING - Creating a copy of a function but with some preset parameters.
 // Very useful in mathematical situations
+
+
+// Lekcja nr 51 "Functional programming"
+
+// Poniżej przykład programowania funkcyjnego, zauważ, że tworzysz tu jedną funkcję i za pomocą niej robisz różne rzeczy
+// Poniżej masz, ze do funkcji przekazuejsz jako peirwszy parametr tablicę, jako drugi funkcję
+// Zauważ. że ta funkcja ma na każdym elemencie przekazanej tablicy, wywołać przekazanć funkcję
+function mapForEach(arr, fn) {
+
+	var newArr = [];
+	for (var i=0; i < arr.length; i++) {
+		newArr.push(
+			fn(arr[i])
+		)
+	};
+
+	return newArr
+}
+
+var arr1 = [1,2,3];
+console.log(arr1);
+
+var arr2 = mapForEach(arr1, function(item) {
+	return item * 2;
+});
+console.log(arr2);
+
+var arr3 = mapForEach(arr1, function(item) {
+	return item > 2;
+});
+console.log(arr3);
+
+
+// Teraz stworzymy funkcję taką jak powyżej (arr3), ale chcemy żeby ten limit też był parametrem
+// Tu mamy taki problem, ze checkPastLimti, ma dwa parametry a nasza funkcja w mapForEach, ma jeden
+// Rozwiązemy ten problem za pomocą bind
+
+var checkPastLimit = function(limiter, item) {
+	return item > 2;
+};
+// poniżej limiter =1
+var arr4 = mapForEach(arr1, checkPastLimit.bind(this, 1));
+console.log(arr4);
+
+// Skończyłeś mniej więcej na 3/4 filmiku
