@@ -907,10 +907,88 @@ console.log(arr3);
 // Rozwiązemy ten problem za pomocą bind
 
 var checkPastLimit = function(limiter, item) {
-	return item > 2;
+	return item > limiter;
 };
 // poniżej limiter =1
 var arr4 = mapForEach(arr1, checkPastLimit.bind(this, 1));
 console.log(arr4);
 
-// Skończyłeś mniej więcej na 3/4 filmiku
+
+var checkPastLimitSimplified = function(limiter) {
+	return function(limiter, item) {
+		return item > limiter;
+	}.bind(this, limiter);
+};
+
+var arr5 = mapForEach(arr1, checkPastLimitSimplified(1));
+console.log(arr5);
+
+
+// Lekcja nr 52 "Functional Programming"
+// underscore.js
+var arr6 = _.map(arr1, function(item) { return item * 3});
+console.log(arr6);
+
+var arr7 = _.filter([2,3,4,5,6,7], function(item) {
+	return item % 2 === 0;
+});
+console.log(arr7);
+
+
+// Lekcja nr 53 "Conceptual Aside: Classical vs prototypal Inheritence"
+
+// INHERITANCE: One object gets access to the proporties and metods of another object.
+
+// CLASSICAL INHERITANCE
+	// Bywa trudne do ogarnięcia, jest dużo zależności, ale oczywiscie ma swoje plusy i działa
+		// Słowa związane z classical inheritance: friend, protected, prviate, interface
+
+// PROTOTYPAL INHERITANCE tego używa JavaScript
+	// Prostsze, ale zarówno classical jak i prototypal nei są idealne, oba mają swoje plusy i minusy
+		// Słowa związane z prototypal inheritance: flexible, extansible, easy to understand
+
+
+// Lekcja nr 54 "Understanding the prototype"
+
+// Zrób screena ze schematu o prototype chain
+
+var person = {
+	firstname: 'Default',
+	lastname: 'Default',
+	getFullName: function() {
+		return this.firstname + ' ' + this.lastname;
+	}
+};
+
+var john = {
+	firstname: 'John',
+	lastname: 'Doe'
+};
+
+// Don't do this EVER! For demo purposes only!!!
+john.__proto__ = person;
+// tutaj trzeba zauważyć, że słowo kluczowe this, porpawnie wskażę na Johna
+console.log(john.getFullName());
+// prototype chain zaczyna od góry, więc zatrzyma się jak znajdzie Johna, i tutaj imie tez bdzie john a nie default
+console.log(john.firstname);
+
+var jane = {
+	firstname : 'Jane'
+};
+
+jane.__proto__ = person;
+// tutaj pokaże Jane Default
+console.log(jane.getFullName());
+
+
+jane.__proto__ = john;
+// tutaj pokaże Jane Doe
+console.log(jane.getFullName());
+
+
+
+
+
+
+
+
