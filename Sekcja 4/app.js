@@ -986,9 +986,173 @@ jane.__proto__ = john;
 console.log(jane.getFullName());
 
 
+// Lekcja nr 55 "Everything is an Object (or a primitive)"
+
+// Teraz jak w consoli w przeglądarce wpsizesz a.__proto__ , zobaczysz, ze pokaże Ci "Base object", czyli Object {}; i ten obiekt będzie miał właściwosci które mamy dostępne na obiektach
+var a = {};
 
 
+// Pamiętaj, że funkcję to obiekty o specjalnych właściwościach
+// Teraz jak w consoli w przeglądarce wpsizesz b.__proto__ , zobaczysz, ze pokaże Ci "Base object", czyli function Empty() {}; i ta funkcja będzie miała właściwości które mamy dostępne na funkcjach
+// np: bind, apply itd.
+var b = function() {};
+
+// Tutaj anaoligcznie przy c.__proto__ zwróci []; i też właściwości na tablicach, np: concat, indexOf, length, push
+var c = [];
 
 
+// Tutaj masz fajny przykłąd jak działa dziedziczenie prototypowe. Wszystkie metody dostępne na funkcjach, tablicach, obiektach są w __proto__
+// tam fizycznie siedzą, w prototype chain JS szuka funkcji zapisanych bezpośrednio na tablicy/obiekcie/funckji, jak nie znajdzie to idzie do __proto__ i tam ma np: bind, concat itd.
+
+// Czyli genealnie to w prototypie siedzą właściwości zarówno obektów jak i funkcji jak i tablic
+
+// Pamiętaj, że na samym dole prototype chain jest Object {}, czyli:
+// a.__proto__.__proto__ to samo dla b.__proto__.__proto__ i c.__proto__.__proto__ , zawsze będzie tu Object {}, głębiej się nie da zejść
 
 
+// Lekcja nr 56 "Reflection and extend"
+
+// REFLECTION - An object can look at itself, listing and changing its properties and methods
+// Dzięki reflection mamy możliwość użycia "extend"
+
+var person = {
+	firstname: 'Default',
+	lastname: 'Default',
+	getFullName: function() {
+		return this.firstname + ' ' + this.lastname;
+	}
+};
+
+var john = {
+	firstname: 'John',
+	lastname: 'Doe'
+};
+
+// Don't do this EVER! For demo purposes only!!!
+john.__proto__ = person;
+
+// Tu mamy pętle for in, podobno do for each
+// będzię biegła po "propertis" w obiekcie john (var prop in john)
+for (var prop in john) {
+	console.log(prop + ': ' + john[prop]);
+};
+
+// W powyższej consoli w pętli for in, pokaże nam firstname, lastname i funckcję getFullName, mimo, że nie ma jej bepośrednio w obiekcie, ale jest w protototypie
+
+// Teraz przy założeniu, że chcemy sprawdzić tylko obiekt, ale nie sprawdzać prototypu, możemy:
+for (var prop in john) {
+	if (john.hasOwnProperty(prop)) {
+		console.log(prop + ': ' + john[prop]);
+	}
+};
+
+var jane = {
+	address: '111 Main St.',
+	getFormalFullName: function() {
+		return this.lastname + ', ' + this.firstname;
+	}
+};
+
+var jim = {
+	getFirstName: function() {
+		return firstname;
+	}
+}
+
+// Użyjemy underscore
+_.extend(john, jane, jim);
+
+// Zauważ, że teraz rozszerzyliśmy metody obketu john, o metody obiektu jane i jim
+console.log(john);
+
+// Lekcja nr 57 "Function Constructors, 'new', and the History of Javascript"
+
+function Person() {
+	// Poniżej "this" będzie kierowało na pusty obiekt Person
+	console.log(this);
+
+	// na "this" ustawimy firstname i lastname
+	this.firstname = 'John';
+	this.lastname = 'Doee';
+	console.log('This function is invoked');
+
+	// Pamietaj, że jak bedziesz tu miał return, która zwraca obiekt, to tylko ten obiekt zostanie zwrócony np:
+	// return {obiekt: "Tylko to zwróci a nie naszego johna doee"}
+};
+
+//
+var john = new Person();
+// Otrzymamy obiekt Person z firstname: John i lsastname Doee
+// Pamiętaj, że słowo kluczowe "new" ustawi this, na pusty obiekt Person
+console.log(john);
+
+// Function Constructor
+// Powyższy przykład jest troche chujowy, bo ustawiamy na stałę firstname i lastname, a mozemy to zrobić tak:
+function Person(firstname, lastname) {
+	console.log(this);
+	this.firstname = firstname;
+	this.lastname =  lastname;
+};
+
+var karol = new Person('Karol', 'Vogelgezang');
+console.log(karol);
+var jakub = new Person('Jakub', 'Vogelgezang');
+console.log(jakub);
+
+// FUNCTION CUNSTRUCTORS: A normal function that is used to construct objects.
+// The "this" variable points a new empty object, and that object is returned from the function automatically.
+
+
+// Lekcja nr 58 "Function Constructors and '.prototype'"
+
+function Person(firstname, lastname) {
+	console.log(this);
+	this.firstname = firstname;
+	this.lastname =  lastname;
+};
+
+var tomek = new Person('Tomek', 'Tomczyk');
+console.log(tomek);
+var robert = new Person('Robert', 'Robczyk');
+console.log(robert);
+
+// Każdy function contructor, a nawet każda funkcja ma dostęp do .prototype
+Person.prototype.getFullName = function() {
+	return this.firstname + ' ' + this.lastname;
+};
+
+console.log(tomek.getFullName());
+
+// Takie feature w JS, daje przewagę bo za każdym razem jak tworzysz obiekt w taki sposó”, możesz póxniej dodawać do wszystkich tych obiektów różne metody
+// tak jak masz w powyższym przykładzie
+// np. Utworzysz 100 obiektów za pomocą new Person('Robert', 'Robczyk'); , to do wszystkich możesz później łątwo dodać nową metodę za pomocą
+// Person.prototype.getFullName = function() {
+// 	return this.firstname + ' ' + this.lastname;
+// };
+
+// Takie rozwiązanie jest lepsze niż dodanie tej powyższej metody bezpośrednio w function cotracutor "Person", bo wtedy wsyzstkei 100 obiektów będzie
+// zajmować dodatkowe meisjce na tę metodę.
+// A dodając do prototypu, masz ją tylko raz a konretne obiekty po prostu z neij korzystają, jest to badziej wydajne.
+
+
+// Lekcja nr 59 "Dangerous Aside: 'new' and fucntions"
+
+// Pamiętaj, że w powyższym przykałdzie z new Person, tworzysz po prostu funkcję. 
+// Oczywiśćie przez słowo "new", tworzy ona pusty obiekt, na ktry wskazuje this, wiec przez "new" mamy ddoatkową fukncję, ale wciąż tworzymy funkcję
+// Ponieważ jest to wciąż tylko funckja, musimy pamiętać o słowie kluczowym "new" bo inaczej nam to nie zadziała tak jak chcemy
+
+function Person(firstname, lastname) {
+	// tutaj this, bedzie wskazywał na window
+	console.log(this);
+	this.firstname = firstname;
+	this.lastname =  lastname;
+};
+
+var zjebane = Person('zjebane', 'zjeb'); 
+// poniżej pokaże undifined
+console.log(zjebane);
+
+// Konwencja w nazewnictwie jest taka, ze za kazdm razem jak tworzysz function contructor, psizesz go z duzej litery, jak "Person"
+
+
+// Lekcja nr 60 "Conceptual Aside: Built in FUnction Constructors"

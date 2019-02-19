@@ -4,7 +4,6 @@
     <list default="true" id="9a4ef3cf-29ea-461f-869f-9973b2f85a49" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sekcja 4/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/Sekcja 4/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sekcja 4/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Sekcja 4/index.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,8 +16,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Sekcja 4/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="901">
-              <caret line="984" column="24" selection-start-line="984" selection-start-column="24" selection-end-line="984" selection-end-column="24" />
+            <state relative-caret-position="152">
+              <caret line="1105" column="55" selection-start-line="1105" selection-start-column="55" selection-end-line="1105" selection-end-column="55" />
             </state>
           </provider>
         </entry>
@@ -35,34 +34,19 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="420" />
-    <option name="y" value="124" />
-    <option name="width" value="1390" />
-    <option name="height" value="1000" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="77" />
+    <option name="y" value="226" />
+    <option name="width" value="1843" />
+    <option name="height" value="363" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="JS (weird parts)" type="b2602c69:ProjectViewProjectNode" />
-              <item name="JS (weird parts)" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="JS (weird parts)" type="b2602c69:ProjectViewProjectNode" />
-              <item name="JS (weird parts)" type="462c0819:PsiDirectoryNode" />
-              <item name="Sekcja 4" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
       <pane id="Scope" />
+      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -95,17 +79,19 @@
       <updated>1550147382342</updated>
       <workItem from="1550147383719" duration="9800000" />
       <workItem from="1550222803828" duration="16308000" />
+      <workItem from="1550263676913" duration="3050000" />
+      <workItem from="1550329743821" duration="6635000" />
+      <workItem from="1550613118384" duration="5000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26108000" />
+    <option name="totallyTimeSpent" value="35798000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="-2" width="1920" height="1202" extended-state="6" />
-    <editor active="true" />
+    <frame x="77" y="226" width="1843" height="363" extended-state="0" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15421557" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16026711" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -132,8 +118,8 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/Sekcja 4/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="901">
-          <caret line="984" column="24" selection-start-line="984" selection-start-column="24" selection-end-line="984" selection-end-column="24" />
+        <state relative-caret-position="152">
+          <caret line="1105" column="55" selection-start-line="1105" selection-start-column="55" selection-end-line="1105" selection-end-column="55" />
         </state>
       </provider>
     </entry>
