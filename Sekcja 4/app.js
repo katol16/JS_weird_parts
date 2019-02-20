@@ -1155,4 +1155,191 @@ console.log(zjebane);
 // Konwencja w nazewnictwie jest taka, ze za kazdm razem jak tworzysz function contructor, psizesz go z duzej litery, jak "Person"
 
 
-// Lekcja nr 60 "Conceptual Aside: Built in FUnction Constructors"
+// Lekcja nr 60 "Conceptual Aside: Built-in Fuction Constructors"
+// Czyli wbudowane w JavaScript function constructor
+
+var n = new Number(3);
+
+console.log(n);
+// teraz jak w consoli sprawdzimy "n" to otrzymamy nie wartośc prymitywną tylko obiekt: "__proto__: Number {[[PrimitiveValue]]: 3}"
+// bo operator "new" tworzy obiekt
+// Ale ponieważ jest to biekt, posiada prototyp, który będziemy mieli w Number.prototype
+// Jest to prototyp do którego wszystkie typy "number" mają dostęp, więc bedziesz na tym obiekcie miał te same metody co ma number
+
+// Kolejny przykład
+var s =  new String("John");
+console.log(s);
+// Tutaj to działą pdoobnie, bo console.log(s); zwróci : String {"John"}0: "J"1: "o"2: "h"3: "n"length: 4__proto__: String[[PrimitiveValue]]: "John"
+// ale też masz wszystkie metody, które działają na stringach, analogicznie jak z Numner, więc możesz spokojnie zrobić:
+console.log(s.indexOf('o')); // i to zadziała
+
+// Więc w powyższych przykałdach wyglada jakbyś tworzył wartości prymitywne, ale tworzysz tak naprawdę obiekty, które przechowują prymitywy
+
+// Teraz jeśli chce dodać metodę do wszystkich Stringow, to mogę tę metodę zapisać w prototypie String, czyli:
+String.prototype.isLengthGreaterThen = function(limit) {
+	return this.length > limit;
+}
+console.log("John".isLengthGreaterThen(3));
+
+// Kolejny przykłąd z Number
+Number.prototype.isPositive = function() {
+	return this > 0;
+}
+var przykladowyNumer = 9;
+console.log(przykladowyNumer.isPositive());
+
+
+// Lekcja nr 61 "Dangerous Aside: Built-in Fuction Constructors"
+
+// Przykłady niebezpieczeństw
+
+var a = 3;
+var b =  new Number(3);
+
+console.log(a==b); // zwróci true
+console.log(a===b); // to już zwróci false, bo a jest prymitywem, natomiast b jest obiektem
+// Więc trzeba na to uważać. Generalnie lepiej nie używać Built-in Fuction Constructors do prymitywów, chyba, że już kurwa musisz, ale generalnie lepiej używać normalnych wartości prymitywnych
+
+// Pamiętaj, ze mzoesz też użyć samej funckji Number, bez słowa "new", któro tworzy obiekt
+
+
+// Lekcja nr 62 "Dangerous Aside: Arrays and for... in"
+
+// Ponieważ tablice to obiekty mozmey zrobić coś takiego:
+var arrNames = ['John', 'Jane', 'Piter'];
+
+Array.prototype.myCustomFeature = 'cool';
+
+for (var prop in arrNames) {
+	console.log(prop + ': ' + arrNames[prop]);
+}
+// Ponieważ tablice to obiekty, a obiekty posiadają key-value pairs, to key bedzie tutaj index tablicy, czyli 0,1,2, a value to imiona
+
+// W 'for in' mamy taki problem, że jak dodamy Array.prototype.myCustomFeature = 'cool'; to w powyzszej cosnoli to zobaczymy
+
+// Dlatego Powinniśmy używać standarowej wersji iterowania po tablicach, a nie 'for in' czyli:
+// for (var i = 0; i < arrNames.length; i++) {
+//
+// }
+
+
+// Lekcja nr 63 "Object.create and Pure Prototypal Inheritence"
+
+// Inna metoda tworzenia obiektów
+
+var person = {
+	firstName: 'Default',
+	lastname: 'Default',
+	greet: function() {
+		// Pamiętaj, że musisz tu użyć słowa kluczowego 'this'
+		// Jeśli go nie użyjesz, metoda greet, będzie szukała wewnątrz funkcji "firstname" nie znajdzie, wiec pójdzie do global i też nie znajdzie, wiec zwróci undefined
+		return 'Hi ' + this.firstname;
+	}
+}
+
+// stworzymy inny obiekt na bazie isnitejącego
+var john = Object.create(person);
+console.log(john); // tutaj zaważysz, że dostaniesz pusty obiekt, ale w prototypie będziesz miał zapisane wsyzstkie włąściwości i metody tego co przekażesz w nawiasach create
+// W naszym przypadku jest to person
+
+// Teraz jeśli chcesz zastąpić właściwości defaultowe, robisz po prostu tak:
+john.firstname = 'John';
+john.lastname = 'Doe';
+console.log(john);
+console.log(john.greet()); // zadziała
+
+// Jeśli w jakimś projekcie nie mozesz użyć Object.create, bo np. środowisko Ci nie pozwala, albo musisz wspierać starsze przeglądarki
+// To możesz użyć czegoś co nazywa się POLYFILL
+
+// POLYFILL - Code that adds a feature which the engine MAY LACK.
+// Za pomocą tego wypełnaisz luki, które mogę mieć starsze przeglądarki.
+
+// Przykład dla wsparcia starszych przeglądarek
+// Sprawdzi, czy silnik posiada funckję Object.create, jesli nie, to wykona poniższy kod
+if (!Object.create) {
+	Object.create = function (o) {
+		if (arguments.length > 1) {
+			throw new Error('Object.create implementaion' + ' only accepts the first paramter.')
+		}
+		function F() {}
+		F.prototype = o;
+		return new F();
+	};
+}
+// Dalej leci jak powyżej (od var person)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
