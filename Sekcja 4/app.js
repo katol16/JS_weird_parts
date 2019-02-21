@@ -1269,8 +1269,11 @@ if (!Object.create) {
 // Dalej leci jak powyżej (od var person)
 
 
+// Lekcja nr 64 "ES6 and Classes"
 
-
+// Generalnie tworzenie obiektów za pomocą "Class" w js, działą tak samo jak "new", function constructing i Obiect.create.
+// Jest to tzw. Syntactic sugar
+// SYNTACTIC SUGAR - A different way to type something that doesn't change how it works under the hood
 
 
 
