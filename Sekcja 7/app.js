@@ -49,3 +49,9 @@ function logNewPerson() {
 // logNewPerson();
 
 // Trzeba też uważać z use strict, bo nie wszystkie silniki JS interpetują use strict w taki sam sposób
+
+
+// Lekcja nr 68 "Strict Mode Reference"
+
+	// Materiał PDF
+
