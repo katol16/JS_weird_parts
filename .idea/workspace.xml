@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9a4ef3cf-29ea-461f-869f-9973b2f85a49" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Sekcja 8/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/Sekcja 8/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sekcja 9/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/Sekcja 9/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sekcja 9/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Sekcja 9/index.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -12,32 +14,40 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Sekcja 8/app.js">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Sekcja 9/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="21" column="95" selection-start-line="21" selection-start-column="95" selection-end-line="21" selection-end-column="95" />
+            <state relative-caret-position="60">
+              <caret line="4" selection-start-line="4" selection-end-line="4" selection-end-column="46" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Sekcja 8/jQuery.js">
+        <entry file="file://$PROJECT_DIR$/Sekcja 9/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2595">
-              <caret line="13" column="31" selection-start-line="13" selection-start-column="31" selection-end-line="13" selection-end-column="31" />
+            <state relative-caret-position="133">
+              <caret line="9" column="7" lean-forward="true" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Sekcja 9/Greetr.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="64">
+              <caret line="43" column="9" lean-forward="true" selection-start-line="43" selection-start-column="9" selection-end-line="43" selection-end-column="9" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Sekcja 9/jQuery.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-4230">
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Sekcja 8/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" column="7" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -56,13 +66,16 @@
         <option value="$PROJECT_DIR$/Sekcja 8/jQuery.js" />
         <option value="$PROJECT_DIR$/Sekcja 8/index.html" />
         <option value="$PROJECT_DIR$/Sekcja 8/app.js" />
+        <option value="$PROJECT_DIR$/Sekcja 9/index.html" />
+        <option value="$PROJECT_DIR$/Sekcja 9/app.js" />
+        <option value="$PROJECT_DIR$/Sekcja 9/Greetr.js" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="140" />
-    <option name="y" value="165" />
-    <option name="width" value="1843" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="67" />
+    <option name="y" value="62" />
+    <option name="width" value="1851" />
     <option name="height" value="374" />
   </component>
   <component name="ProjectView">
@@ -70,8 +83,23 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="JS_weird_parts" type="b2602c69:ProjectViewProjectNode" />
+              <item name="JS_weird_parts" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="JS_weird_parts" type="b2602c69:ProjectViewProjectNode" />
+              <item name="JS_weird_parts" type="462c0819:PsiDirectoryNode" />
+              <item name="Sekcja 9" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="Scope" />
-      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -113,16 +141,19 @@
       <workItem from="1550822585885" duration="1778000" />
       <workItem from="1550846519904" duration="4757000" />
       <workItem from="1550856879315" duration="2169000" />
+      <workItem from="1550869496661" duration="613000" />
+      <workItem from="1550927062900" duration="8423000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="63051000" />
+    <option name="totallyTimeSpent" value="72087000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
+    <frame x="67" y="62" width="1851" height="374" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16878805" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17229916" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -150,16 +181,16 @@
     <entry file="file://$PROJECT_DIR$/Sekcja 4/app.js" />
     <entry file="file://$PROJECT_DIR$/Sekcja 5/index.html" />
     <entry file="file://$PROJECT_DIR$/Sekcja 5/app.js" />
-    <entry file="file://$PROJECT_DIR$/Sekcja 8/index.html">
+    <entry file="file://$PROJECT_DIR$/Sekcja 8/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="7" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
+        <state relative-caret-position="315">
+          <caret line="21" column="95" selection-start-line="21" selection-start-column="95" selection-end-line="21" selection-end-column="95" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Sekcja 8/jQuery.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2595">
+        <state relative-caret-position="15">
           <caret line="13" column="31" selection-start-line="13" selection-start-column="31" selection-end-line="13" selection-end-column="31" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
@@ -167,10 +198,40 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Sekcja 8/app.js">
+    <entry file="file://$PROJECT_DIR$/Sekcja 8/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="95" selection-start-line="21" selection-start-column="95" selection-end-line="21" selection-end-column="95" />
+        <state relative-caret-position="240">
+          <caret line="16" column="7" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Sekcja 9/jQuery.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4230">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Sekcja 9/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="9" column="7" lean-forward="true" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Sekcja 9/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" selection-start-line="4" selection-end-line="4" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Sekcja 9/Greetr.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="64">
+          <caret line="43" column="9" lean-forward="true" selection-start-line="43" selection-start-column="9" selection-end-line="43" selection-end-column="9" />
         </state>
       </provider>
     </entry>
