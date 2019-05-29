@@ -212,3 +212,30 @@ console.log('finished execution');
 // (global i ta funkcja, która jest wywoływana w globalnym zakresie)
 // Mimo, że JS jes synchroniczny, to moga tam się wykonwyać asyncrhonicze akcję, ponieważ w przeglądarce
 // oprócz silnika JS, mamy jeszcze inne silniki, np: Rendering Engine, Http Request.
+
+// UWAGA!
+
+// DO POWTÓRKI
+
+// function waitThreeSeconds() {
+// 	var ms = 3000 +new Date().getTime();
+// 	while (new Date() < ms){}
+// 	console.log('finished function');
+// }
+
+// function clickHandler() {
+// 	console.log('click event!');
+// }
+
+// // listen for the click event
+// document.addEventListener('click', clickHandler);
+
+// waitThreeSeconds();
+// console.log('finished execution');
+// // W powyższym kodzie jeśli nie klikniemy, to po 3 sekundach wywoła "finished funciton", a pozniej "finished exxecution"
+// // Jeśli klinkniemy w ciagu 3 sekund kiedy funkcja 'waiThreeSeconds' jest wykonywana, to (po 3 sekundach) bedzie:
+// // "finished funciton", a pozniej "finished exxecution" a na koniec "click event".
+// // WAŻNE! Dzieje się tak ponieważ javaScript wykona eventy dopeiro jak execution stack bedzie pusty 
+// // (global i ta funkcja, która jest wywoływana w globalnym zakresie)
+// // Mimo, że JS jes synchroniczny, to moga tam się wykonwyać asyncrhonicze akcję, ponieważ w przeglądarce
+// // oprócz silnika JS, mamy jeszcze inne silniki, np: Rendering Engine, Http Request.
