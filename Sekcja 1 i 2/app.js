@@ -196,6 +196,10 @@ function waitThreeSeconds() {
 	console.log('finished function');
 }
 
+// Uwaga, jeśli zakomentujesz funkcję waitTheSeconds i jej wywołąnie a odkomentuejsz poniższego setTimeOuta, to ta funckja setTimeOut juz sie wykona asynchronicznie
+// czyli będzie: "finished execution", "Hello" jeśli jeszcze klikniesz w czasie 3 sekund to: "finished execution", "click event!", "Hello"
+// setTimeout(function(){ console.log("Hello"); }, 3000);
+
 function clickHandler() {
 	console.log('click event!');
 }
@@ -203,7 +207,7 @@ function clickHandler() {
 // listen for the click event
 document.addEventListener('click', clickHandler);
 
-waitThreeSeconds();
+// waitThreeSeconds();
 console.log('finished execution');
 // W powyższym kodzie jeśli nie klikniemy, to po 3 sekundach wywoła "finished funciton", a pozniej "finished exxecution"
 // Jeśli klinkniemy w ciagu 3 sekund kiedy funkcja 'waiThreeSeconds' jest wykonywana, to (po 3 sekundach) bedzie:
