@@ -321,6 +321,7 @@ console.log(d);
 // Znowu będziemy mieli dwa te same obiekty z "Hola"
 
 // UWAGA!
+// Do Powtórzenia!
 // Equals operator sets up new memory space (new address in memory)
 
 c = { greeting: 'Howdy'};
@@ -357,6 +358,7 @@ b();
 // Tworząc function statement, albo function expressions, 'this' będzie wskazywało na globalny obiekt
 
 
+// Do Powtórzenia!
 var c = {
 	name: 'The C Object',
 	secondName: 'Imie',
@@ -493,7 +495,7 @@ greet2a();
 
 // Lekcja nr 40 Framework aside "Function overloading"
 
-// Function overloading, wystepuje chyba abrdziej w innych językach programownaia
+// Function overloading, wystepuje chyba bardziej w innych językach programownaia
 // W JS chyba mniej
 
 
@@ -598,7 +600,7 @@ var imie = 'John';
 	console.log('inside IIFE: Hello ' + name);
 })(imie); 
 // Drugi przykład to wywołanie na zewnątrz. Obie formy poprawne.
-// WYbierz sposó” wywołania IIFE, który według Ciebie jest lepszy i ciagle go używaj.
+// Wybierz sposób wywołania IIFE, który według Ciebie jest lepszy i ciagle go używaj.
 
 
 // Lekcja nr 45 Framework aside "IIFEs and Safe Code"
