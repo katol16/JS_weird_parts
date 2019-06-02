@@ -11,15 +11,21 @@
 
 
 // Leckja nr 10 "The Execution Context - Creation and Hoisting"
+console.log("Hoisting");
 
 b(); // wywoła porpawnie funkcję
 console.log(a) // poda "undefined"
+// console.log(bLet); // Wyrzuci błąd "Refference Error"
+console.log(cConst); // Wyrzuci błąd "Refference Error"
+
 // Więc ten kod tutaj, nie wyrzuci błędu, funkcja normalnie się wykona
 // zmienna "a" będzie niezdefiniowana "undefined" - ale to nie jest Error
 // Dopiero jak całkiem usuniesz zmienna "a", to dostaneisz "ReferenceError - a is not defined"
 // To jest właśnie Hoisting!
 
 var a = 'Hello world!';
+// let bLet = "Hello let";
+// const cConst = "Hello const"
 
 function b() {
 	console.log('Called b!');
