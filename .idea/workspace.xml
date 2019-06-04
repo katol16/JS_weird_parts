@@ -15,6 +15,13 @@
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+        <entry file="file://$PROJECT_DIR$/Sekcja 1 i 2/app.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-765" />
+=======
+>>>>>>> d6ca437812a54ba125091f17c9bff54fc38d0c91
         <entry file="file://$PROJECT_DIR$/Sekcja 10/app.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="75">
@@ -29,11 +36,15 @@
             <state relative-caret-position="60">
               <caret line="4" column="10" selection-start-line="4" selection-start-column="10" selection-end-line="4" selection-end-column="10" />
             </state>
+<<<<<<< HEAD
 =======
         <entry file="file://$PROJECT_DIR$/Sekcja 1 i 2/app.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-765" />
 >>>>>>> 9f58ae25336bd6d5fb38237445b345ca523a7b11
+=======
+>>>>>>> ec3b29cdd82d180c62f65d031c5f37c4b2fbdbe4
+>>>>>>> d6ca437812a54ba125091f17c9bff54fc38d0c91
           </provider>
         </entry>
       </file>
@@ -52,31 +63,54 @@
         <option value="$PROJECT_DIR$/Sekcja 8/index.html" />
         <option value="$PROJECT_DIR$/Sekcja 8/app.js" />
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+        <option value="$PROJECT_DIR$/Sekcja 9/app.js" />
+        <option value="$PROJECT_DIR$/Sekcja 9/index.html" />
+        <option value="$PROJECT_DIR$/Sekcja 9/Greetr.js" />
+=======
+>>>>>>> d6ca437812a54ba125091f17c9bff54fc38d0c91
         <option value="$PROJECT_DIR$/Sekcja 9/index.html" />
         <option value="$PROJECT_DIR$/Sekcja 9/Greetr.js" />
         <option value="$PROJECT_DIR$/Sekcja 9/app.js" />
         <option value="$PROJECT_DIR$/Sekcja 10/index.html" />
         <option value="$PROJECT_DIR$/Sekcja 10/app.js" />
+<<<<<<< HEAD
 =======
         <option value="$PROJECT_DIR$/Sekcja 9/app.js" />
         <option value="$PROJECT_DIR$/Sekcja 9/index.html" />
         <option value="$PROJECT_DIR$/Sekcja 9/Greetr.js" />
 >>>>>>> 9f58ae25336bd6d5fb38237445b345ca523a7b11
+=======
+>>>>>>> ec3b29cdd82d180c62f65d031c5f37c4b2fbdbe4
+>>>>>>> d6ca437812a54ba125091f17c9bff54fc38d0c91
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
+<<<<<<< HEAD
 <<<<<<< HEAD
     <option name="x" value="319" />
     <option name="y" value="56" />
     <option name="width" value="1843" />
     <option name="height" value="879" />
 =======
+=======
+>>>>>>> d6ca437812a54ba125091f17c9bff54fc38d0c91
     <option name="x" value="-2" />
     <option name="y" value="247" />
     <option name="width" value="1851" />
     <option name="height" value="374" />
+<<<<<<< HEAD
 >>>>>>> 9f58ae25336bd6d5fb38237445b345ca523a7b11
+=======
+=======
+    <option name="x" value="319" />
+    <option name="y" value="56" />
+    <option name="width" value="1843" />
+    <option name="height" value="879" />
+>>>>>>> ec3b29cdd82d180c62f65d031c5f37c4b2fbdbe4
+>>>>>>> d6ca437812a54ba125091f17c9bff54fc38d0c91
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -93,10 +127,13 @@
             </path>
             <path>
 <<<<<<< HEAD
+<<<<<<< HEAD
               <item name="JS (weird parts)" type="b2602c69:ProjectViewProjectNode" />
               <item name="JS (weird parts)" type="462c0819:PsiDirectoryNode" />
               <item name="Sekcja 10" type="462c0819:PsiDirectoryNode" />
 =======
+=======
+>>>>>>> d6ca437812a54ba125091f17c9bff54fc38d0c91
               <item name="JS_weird_parts" type="b2602c69:ProjectViewProjectNode" />
               <item name="JS_weird_parts" type="462c0819:PsiDirectoryNode" />
               <item name="Sekcja 1 i 2" type="462c0819:PsiDirectoryNode" />
@@ -105,7 +142,15 @@
               <item name="JS_weird_parts" type="b2602c69:ProjectViewProjectNode" />
               <item name="JS_weird_parts" type="462c0819:PsiDirectoryNode" />
               <item name="Sekcja 9" type="462c0819:PsiDirectoryNode" />
+<<<<<<< HEAD
 >>>>>>> 9f58ae25336bd6d5fb38237445b345ca523a7b11
+=======
+=======
+              <item name="JS (weird parts)" type="b2602c69:ProjectViewProjectNode" />
+              <item name="JS (weird parts)" type="462c0819:PsiDirectoryNode" />
+              <item name="Sekcja 10" type="462c0819:PsiDirectoryNode" />
+>>>>>>> ec3b29cdd82d180c62f65d031c5f37c4b2fbdbe4
+>>>>>>> d6ca437812a54ba125091f17c9bff54fc38d0c91
             </path>
           </expand>
           <select />
@@ -156,6 +201,7 @@
       <workItem from="1550869496661" duration="613000" />
       <workItem from="1550927062900" duration="8423000" />
 <<<<<<< HEAD
+<<<<<<< HEAD
       <workItem from="1551126371172" duration="5331000" />
       <workItem from="1551169834748" duration="6484000" />
       <workItem from="1551178692577" duration="966000" />
@@ -163,27 +209,51 @@
       <workItem from="1551126371172" duration="6064000" />
       <workItem from="1557853378528" duration="520000" />
 >>>>>>> 9f58ae25336bd6d5fb38237445b345ca523a7b11
+=======
+      <workItem from="1551126371172" duration="6064000" />
+      <workItem from="1557853378528" duration="520000" />
+=======
+      <workItem from="1551126371172" duration="5331000" />
+      <workItem from="1551169834748" duration="6484000" />
+      <workItem from="1551178692577" duration="966000" />
+>>>>>>> ec3b29cdd82d180c62f65d031c5f37c4b2fbdbe4
+>>>>>>> d6ca437812a54ba125091f17c9bff54fc38d0c91
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
 <<<<<<< HEAD
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="84868000" />
-  </component>
-  <component name="ToolWindowManager">
-    <frame x="0" y="-2" width="1920" height="1202" extended-state="6" />
-    <editor active="true" />
-    <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16915688" />
 =======
     <option name="totallyTimeSpent" value="78671000" />
+>>>>>>> d6ca437812a54ba125091f17c9bff54fc38d0c91
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
     <editor active="true" />
     <layout>
+<<<<<<< HEAD
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16915688" />
+=======
+    <option name="totallyTimeSpent" value="78671000" />
+=======
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1759823" />
+=======
+    <option name="totallyTimeSpent" value="84868000" />
+>>>>>>> d6ca437812a54ba125091f17c9bff54fc38d0c91
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="-2" width="1920" height="1202" extended-state="6" />
+    <editor active="true" />
+    <layout>
+<<<<<<< HEAD
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1759823" />
 >>>>>>> 9f58ae25336bd6d5fb38237445b345ca523a7b11
+=======
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16915688" />
+>>>>>>> ec3b29cdd82d180c62f65d031c5f37c4b2fbdbe4
+>>>>>>> d6ca437812a54ba125091f17c9bff54fc38d0c91
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -238,17 +308,27 @@
     <entry file="file://$PROJECT_DIR$/Sekcja 9/app.js">
       <provider selected="true" editor-type-id="text-editor">
 <<<<<<< HEAD
+<<<<<<< HEAD
         <state relative-caret-position="465">
           <caret line="31" column="3" lean-forward="true" selection-start-line="31" selection-start-column="3" selection-end-line="31" selection-end-column="3" />
 =======
         <state>
           <caret column="29" selection-start-column="29" selection-end-column="29" />
 >>>>>>> 9f58ae25336bd6d5fb38237445b345ca523a7b11
+=======
+        <state>
+          <caret column="29" selection-start-column="29" selection-end-column="29" />
+=======
+        <state relative-caret-position="465">
+          <caret line="31" column="3" lean-forward="true" selection-start-line="31" selection-start-column="3" selection-end-line="31" selection-end-column="3" />
+>>>>>>> ec3b29cdd82d180c62f65d031c5f37c4b2fbdbe4
+>>>>>>> d6ca437812a54ba125091f17c9bff54fc38d0c91
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Sekcja 9/index.html">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
 <<<<<<< HEAD
         <state relative-caret-position="255">
           <caret line="17" column="7" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
@@ -256,11 +336,35 @@
         <state relative-caret-position="204">
           <caret line="12" column="22" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
 >>>>>>> 9f58ae25336bd6d5fb38237445b345ca523a7b11
+=======
+        <state relative-caret-position="204">
+          <caret line="12" column="22" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
+=======
+        <state relative-caret-position="255">
+          <caret line="17" column="7" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
+>>>>>>> ec3b29cdd82d180c62f65d031c5f37c4b2fbdbe4
+>>>>>>> d6ca437812a54ba125091f17c9bff54fc38d0c91
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Sekcja 9/Greetr.js">
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1904">
+          <caret line="112" column="24" selection-start-line="112" selection-start-column="24" selection-end-line="112" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Sekcja 9/jQuery.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+=======
+>>>>>>> d6ca437812a54ba125091f17c9bff54fc38d0c91
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
           <caret line="90" selection-start-line="90" selection-end-line="90" />
@@ -287,6 +391,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="69" selection-start-line="5" selection-start-column="69" selection-end-line="5" selection-end-column="69" />
+<<<<<<< HEAD
 =======
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1904">
@@ -301,6 +406,9 @@
             <element signature="n#!!doc" expanded="true" />
           </folding>
 >>>>>>> 9f58ae25336bd6d5fb38237445b345ca523a7b11
+=======
+>>>>>>> ec3b29cdd82d180c62f65d031c5f37c4b2fbdbe4
+>>>>>>> d6ca437812a54ba125091f17c9bff54fc38d0c91
         </state>
       </provider>
     </entry>
