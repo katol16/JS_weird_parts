@@ -380,6 +380,13 @@ var c = {
 		// Dzieję się tak daltego, że 'this' w funkcji setname, wskazuję na window
 		// czyli funkcję wewnątrz funkcji(metody) mają problem i kierują 'this' na 'window'
 
+		// Kolejna przykład poniżej:
+		function testowaFunkcja() {
+			console.log("testowaFunkcja this:");
+			console.log(this); // również wskaże na window
+		};
+		testowaFunkcja();
+
 		// żeby powyższy problem rozwiązać, robimy coś co nazywamy często "that" lub "self"
 		// Sposób tego rozwiazania działa, ponieważ obiekt zapisywane sa w pamięci za pomocą "reference"
 		// Poniżej pokażemy rozwiazanie w metodzie log2 (właśnie z self lub that)
