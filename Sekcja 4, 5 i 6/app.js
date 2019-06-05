@@ -46,8 +46,8 @@ console.log(person['address']['city']);
 // skrót do tworzenia obiektu, nazywany "Object literal"
 var person2 = {};
 
-// plusem tego rozwiazania, jest to, że mozesz od razu wprwoadzać key-value pair do obiektu
-// więc szybciej się tworzy (pisze) takie obiekty
+// plusem tego rozwiazania, jest to, że mozesz od razu wprowadzać key-value pairs do obiektu
+// więc szybciej się tworzy (piszę) takie obiekty.
 var person3 = {
 	firstName: 'Karol',
 	lastName: 'Vogelgezang',
@@ -67,13 +67,13 @@ var Karol = {
 		street: 'Sobieskiego 16',
 		city: 'Narol'
 	}
-}; 
+};
 
 function greet(person) {
 	console.log('Hi ' + person.firstName);
 }
 
-greet(Karol);
+greet(Karol); // wyświetli - Hi Karol
 
 // Pamietaj, że możesz też wywołać funkcję z obiektem utworzonym w locie, za pomoca {}
 greet({firstName: 'Mary', lastName: "Smith"});
@@ -98,7 +98,7 @@ console.log(greet2);
 
 // Generalnie tych faking namespaces używamy przy budownaiu np. frameworka, albo biblioteki
 // Chodzi o to, żeby tworzyć dla naszych zmiennych pewien konterner w postaci obiektu,
-// żeby te zmeinne nie były dostępne globalnie i nikt ich nie nadpisał
+// żeby te zmeinne nie były dostępne globalnie i nikt ich nie nadpisał.
 
 // Poniżej dwa sposby jak możesz taki kontener utworzyć
 // "engilsh" jest przykładem gdzie musimy bardziej zagnieździć nasz kontener
@@ -119,7 +119,7 @@ console.log(spanish.greet);
 // Lekcja nr 33 "JSON and Object Literals"
 
 // JSON - JavaScript Object Notation. Jest inspirowany przez Object Literals, wyglada podobnie,
-// ale błędem jest myślenie, że to to samo! 
+// ale błędem jest myślenie, że to to samo!
 
 var objectLiteral = {
 	firstName: 'Mary',
@@ -144,7 +144,7 @@ console.log(objectLiteral);
 // Wieć można powiedzieć, że każdy JSON, jest Object Literal, ale nie każdy Object Literal jest JSON'em
 // {
 // 	"firstName": "Mary",
-// 	"isAProgrammer": true	
+// 	"isAProgrammer": true
 // }
 
 // Ponieważ JSON, jest łatwo czytany i kownertowany w JS, to często w JS używamy JSON'a
@@ -163,9 +163,9 @@ console.log(jsonValue);
 // First Class Functions: Everything you can do with other types(object, strings, booleans) you can do with functions.
 // Assign them to variables, pass them (functions)  around, creare them on the fly.
 
-// Function is a special type of Obect!
+// Function is a special type of Object!
 // Ponieważ funkcje to specjalne obiekty, możesz do nich (funkcji) dołączyć: Primitive, Object, Function
-// Ukryte specjalne włąściwości funkcji: 
+// Ukryte specjalne włąściwości funkcji:
 // Name - Optional, can by anonymous (generalnie imie funkcji)
 // CODE - Tutaj siedzą linie kodu, które napisałeś w funkcji (ciało funkcji, body of a function)
 
@@ -187,8 +187,8 @@ console.log(greet.language); // zwróci 'english'
 
 // Expression: A unit of a code that results in a Value
 // It doesn't have to save to a variable
-// Expression returns a value! 
-// Przykłady: 
+// Expression returns a value!
+// Przykłady:
 // a = 3;
 // 1 + 2;
 // a = {greeting: 'hi'}
@@ -209,7 +209,7 @@ function greet3() {
 // Function expression
 // (Poniżej) bo masz '=' masz jakąś zmienną, która posiada jakąś wartość (w tym przypadku funkcję - czyli special object)
 var anonymousGreet = function() {
-	console.log('hi!');	
+	console.log('hi!');
 }
 
 // wywołanie powżyszej funkcji normalnie po zmiennej: anonymousGreet();
@@ -219,7 +219,7 @@ anonymousGreet();
 // jak zrobimy tak:
 	// anonymousGreet();
 	// var anonymousGreet = function() {
-	// 	console.log('hi!');	
+	// 	console.log('hi!');
 	// }
 // to będzie 'udefined is not a function', ze względu na hoisting! Pamiętaj!
 // Pamiętaj też, że to zadziałą normalnie
@@ -228,8 +228,8 @@ anonymousGreet();
 	// 	console.log('hi!');
 	// }
 // Hoisting jesli widzi funkcję w creation phase to ją zapisuje w pamieci, dla zmiennych tworzy miejsce i daje undefined w creation phase
-// Function expressions are not HOISTED!
-// JS is variable HOISTED! 
+// Function expressions are not HOISTED! ??????
+// JS is variable HOISTED!
 
 // dlatego, żeby działłao musi by tak:
 
@@ -239,7 +239,7 @@ function greet3() {
 }
 
 var anonymousGreet = function() {
-	console.log('hi!');	
+	console.log('hi!');
 }
 anonymousGreet();
 
@@ -271,7 +271,7 @@ log(function() {
 // generalnie jak mamy jakąś zmienną 'a', to zajmuje ona jakieś miejsce w pamięci
 // jeśli teraz przypiszemy b=a, to dla 'b' zostanie utworzone nowe miejsce w pamięci, w której będzie skopiowana wartość 'a'
 
-// By Reference 
+// By Reference
 // Masz screena z kursu w folderze "Sekcja 4"
 // W tym przypadku jak mamy Obiekt w którym jest 'a' i tworzymy b=a, to 'b', będzie wskazywało na ten sam obiekt
 // wiec 'b' będzie wyznaczane na podstawie referencji. 'b' po prostu będzie wskazywało na wczesniej utworzony obiekt,
@@ -305,7 +305,7 @@ c.greeting = 'Hello'; // mutate
 // Muttate: To change something
 // "Immutable" means it can't be changed
 
-// 
+//
 console.log(c);
 console.log(d);
 // zobaczymy ten sam obiekt dwa razy! Z {greeting: "Hello"}
@@ -366,7 +366,7 @@ var c = {
 		console.log(this); // zwróci obiekt c
 
 		this.secondName = 'Drugie imie'
-		console.log(this); // zwróci obiekt 'c' z secondName równym 'Drugie imie'		
+		console.log(this); // zwróci obiekt 'c' z secondName równym 'Drugie imie'
 
 		// Poniżej pokażemy coś co wielu ludzi uważa za błąd w języku JS
 		var setname = function(newname) {
@@ -395,7 +395,7 @@ var c = {
 		var self = this;
 
 		self.secondName = 'Drugie imie'
-		console.log(self); // zwróci obiekt 'c' z secondName równym 'Drugie imie'		
+		console.log(self); // zwróci obiekt 'c' z secondName równym 'Drugie imie'
 
 		var setname = function(newname) {
 			// Ważne!
@@ -512,7 +512,7 @@ greet2a();
 // Lekcja nr 42 Dangerous aside "Automatic semicolon insertion"
 
 // w JS, dodawanie ';' teoretycznie nie jest wymagane, bo silnik JS, sam stara się domyśleć gdzie go wstawić
-// i wstawia go za nas. 
+// i wstawia go za nas.
 // UWAGA! Takie zachowanie JS, moze doporowadzić do błędów, które ciężko zlokalizować
 // Dlatego musisz ZAWSZE sam dodawać ';' !!!
 
@@ -522,7 +522,7 @@ function getPerson() {
 
 	return // tutaj silnik JS zrobi insertion i doda ';'
 	// przez co w consoli zwróci undefined
-	// robi tak dlatego, ze jak widzi, ze programsita dał enter, to znaczy 
+	// robi tak dlatego, ze jak widzi, ze programsita dał enter, to znaczy
 	// ,ze chce przejść do następnej linii i wtedy silnik daje insertion ';'
 	{
 		firstname: 'Tony'
@@ -593,7 +593,7 @@ var greeting = function(name) {
 	return 'Hello ' + name;
 });
 // dzieje się tak ponieważ wewnątrz nawiasów masz function expression, jak gdyby JS zakłąda, ze wewnatrz nawiasu bedzie zwrocona jakas wartość
-// w ten sposób mamy funckję która istnieje i nic nie robi 
+// w ten sposób mamy funckję która istnieje i nic nie robi
 
 // Pewien przykład, gdzie mamy funckję która coś robi i chcemy ją wykonać, wiec robimy tak:
 var imie = 'John';
@@ -605,7 +605,7 @@ var imie = 'John';
 // UWAGA! Można wywołąć IIFE, na dwa sposoby. Pierwszy powyżej, a drugi poniżej:
 (function(name) {
 	console.log('inside IIFE: Hello ' + name);
-})(imie); 
+})(imie);
 // Drugi przykład to wywołanie na zewnątrz. Obie formy poprawne.
 // Wybierz sposób wywołania IIFE, który według Ciebie jest lepszy i ciagle go używaj.
 
@@ -1146,7 +1146,7 @@ console.log(tomek.getFullName());
 
 // Lekcja nr 59 "Dangerous Aside: 'new' and fucntions"
 
-// Pamiętaj, że w powyższym przykałdzie z new Person, tworzysz po prostu funkcję. 
+// Pamiętaj, że w powyższym przykałdzie z new Person, tworzysz po prostu funkcję.
 // Oczywiśćie przez słowo "new", tworzy ona pusty obiekt, na ktry wskazuje this, wiec przez "new" mamy ddoatkową fukncję, ale wciąż tworzymy funkcję
 // Ponieważ jest to wciąż tylko funckja, musimy pamiętać o słowie kluczowym "new" bo inaczej nam to nie zadziała tak jak chcemy
 
@@ -1157,7 +1157,7 @@ function Person(firstname, lastname) {
 	this.lastname =  lastname;
 };
 
-var zjebane = Person('zjebane', 'zjeb'); 
+var zjebane = Person('zjebane', 'zjeb');
 // poniżej pokaże undifined
 console.log(zjebane);
 
