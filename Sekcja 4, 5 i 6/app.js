@@ -545,7 +545,7 @@ console.log(getPerson());
 
 // Whitespace: Invisible characters that create literal 'space' in Your written code
 // Carriage returns, tabs, spaces.
-// Generalnie JS, ignoruje spację i daję to plus, bo mzoesz dawać komentarze pomiędzy
+// Generalnie JS, ignoruje spację i daję to plus, bo mozesz dawać komentarze pomiędzy
 // i kod jest czytelniejszy
 // Dodawaj dużo komentarzy do kodu! Sam tego nie pożałuejsz,
 // bo nawet jak Tobie przyjdzie znowu pracowac nad twoim kodem, bedziesz lepiej pamiętał o co Ci chodziło
