@@ -183,7 +183,7 @@ console.log(greet); // dostaneisz tekst całej funkcji, którą napsiałeś
 console.log(greet.language); // zwróci 'english'
 
 
-// Lekcja nr 35 "Function Statements and Function Expressions"
+// Lekcja nr 35 "Function Statements(Declaration) and Function Expressions"
 
 // Expression: A unit of a code that results in a Value
 // It doesn't have to save to a variable
