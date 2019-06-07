@@ -185,6 +185,9 @@ console.log(greet.language); // zwróci 'english'
 
 // Lekcja nr 35 "Function Statements(Declaration) and Function Expressions"
 
+// Pamiętaj, że mamy po prostu Expresssions w JS i Statements (like if statemnts).
+// Oczywiście są też function expressions i function statements
+
 // Expression: A unit of a code that results in a Value
 // It doesn't have to save to a variable
 // Expression returns a value!
@@ -195,12 +198,12 @@ console.log(greet.language); // zwróci 'english'
 
 // Statement: np. 'if', czyli statement, tylko robi jakąs robotę, ale wartość zwraca expression
 // var a;
-// if (a===3) {
-	// wewnątrz już będzie expression, bo if zwróci 'true' lub 'false'
+// if (a===3 -> nawet to jest expression, bo zwraca true) {
+	// wewnątrz już może być jakieś expression
 // }
 
 // Function statement
-// bo nie zwraca żadnej wartości
+// bo nie zwraca żadnej wartości, jedynie wyświetla w consoli stringa i zaczyna się od słowa "function"
 greet3();
 function greet3() {
 	console.log('hi!');
@@ -228,10 +231,10 @@ anonymousGreet();
 	// 	console.log('hi!');
 	// }
 // Hoisting jesli widzi funkcję w creation phase to ją zapisuje w pamieci, dla zmiennych tworzy miejsce i daje undefined w creation phase
-// Function expressions are not HOISTED! ??????
+// Function expressions are not HOISTED! Function declarations in JavaScript are HOISTED!
 // JS is variable HOISTED!
 
-// dlatego, żeby działłao musi by tak:
+// dlatego, żeby działało musi by tak:
 
 greet3();
 function greet3() {
@@ -357,8 +360,6 @@ b();
 
 // Tworząc function statement, albo function expressions, 'this' będzie wskazywało na globalny obiekt
 
-
-// Do Powtórzenia!
 var c = {
 	name: 'The C Object',
 	secondName: 'Imie',
@@ -377,8 +378,8 @@ var c = {
 		// Tutaj będziemy oczekiwać, że w poniższym console.log, zwróci obiekt z wartością name = 'Updated name in C  Object'
 		console.log(this);
 		// Okazuje się, że nie. W obiekcie 'c', name będzie wciąż jako 'The C Object'!
-		// Dzieję się tak daltego, że 'this' w funkcji setname, wskazuję na window
-		// czyli funkcję wewnątrz funkcji(metody) mają problem i kierują 'this' na 'window'
+		// Dzieję się tak daltego, że 'this' w funkcji setname, wskazuję na window.
+		// Czyli funkcję wewnątrz funkcji(metody) mają problem i kierują 'this' na 'window'
 
 		// Kolejna przykład poniżej:
 		function testowaFunkcja() {
@@ -455,14 +456,14 @@ function greet(firstname, lastname, language) {
 	console.log(lastname);
 	console.log(language);
 	console.log('------------');
-	// Poniżej otrzymamy listę (Nodelist) parametrów, które rpzekazujemy do funkcji
+	// Poniżej otrzymamy listę (Nodelist) parametrów, które przekazujemy do funkcji
 	// Trzeba pamietac, że argumenty zostaną zwrócone w nodelist a nie w tablicy!
 	console.log(arguments);
 }
 
-// W wielu językach programowania, takie wywolanie funkjci spowoduje błąd
-// W JS, nie musimy przekazywać parametrów i funkcja sie normalnie wykona, tylko zwróci 3 razy undefined
-// Hoisting to za ciebie załatwia, ze przygotwouje miejsce w pamieci dla tych parametrów, nawet jak ich nie dostarczysz
+// W wielu językach programowania, takie wywołanie funkcji spowoduje błąd.
+// W JS, nie musimy przekazywać parametrów i funkcja sie normalnie wykona, tylko zwróci 3 razy undefined.
+// Hoisting to za ciebie załatwia, ze przygotwouje miejsce w pamieci dla tych parametrów, nawet jak ich nie dostarczysz.
 greet(); // 3 x 'undefined'
 
 greet('John'); // John i 2 x 'undefined'
@@ -513,7 +514,7 @@ greet2a();
 
 // w JS, dodawanie ';' teoretycznie nie jest wymagane, bo silnik JS, sam stara się domyśleć gdzie go wstawić
 // i wstawia go za nas.
-// UWAGA! Takie zachowanie JS, moze doporowadzić do błędów, które ciężko zlokalizować
+// UWAGA! Takie zachowanie JS, moze doporowadzić do błędów, które ciężko zlokalizować!
 // Dlatego musisz ZAWSZE sam dodawać ';' !!!
 
 // Przykłady błędów związane z insertion ';'
@@ -534,7 +535,7 @@ function getPerson() {
 	// }
 
 	// WAŻNE !!!
-	// DLATEGO ZAWSZE DAWAJ '{'' W TEJ SAMEJ LINI JAK POWYŻEJ
+	// DLATEGO ZAWSZE DAWAJ '{'' W TEJ SAMEJ LINI JAK POWYŻEJ i DODAWAJ ";"
 }
 
 // zwróci undefined
@@ -570,19 +571,10 @@ var greeting = function(name) {
 	console.log('Hello '+name);
 }('John');
 
-
-// Całkowicie poprawne JS expressions i statement (które nie wyjebią błędu):
-3;
-"Hello world";
-{
-	name: 'Karol'
-};
-
-
 // Poniżej wyjebie nam taki błąd:
 // Uncaught SyntaxError: Unexpected token (
-// Dlaczego tak się dzieję? Ponieważ syntax parser wymaga po słowie kluczowym nazwy funkcji.
-// Wymaga, zeby to było function expression, a w naszym przypadku to będzie function statement!
+// Dlaczego tak się dzieję? Ponieważ syntax parser wymaga po słowie kluczowym nazwy funkcji,
+// wymaga, zeby to było function expression, a w naszym przypadku to będzie function statement!
 // UWAGA! Tutaj mamy function statment! A NIE function exporession
 // function(name) {
 // 	return 'Hello ' + name;
@@ -595,7 +587,7 @@ var greeting = function(name) {
 // dzieje się tak ponieważ wewnątrz nawiasów masz function expression, jak gdyby JS zakłąda, ze wewnatrz nawiasu bedzie zwrocona jakas wartość
 // w ten sposób mamy funckję która istnieje i nic nie robi
 
-// Pewien przykład, gdzie mamy funckję która coś robi i chcemy ją wykonać, wiec robimy tak:
+// Pewien przykład, gdzie mamy funkcję która coś robi i chcemy ją wykonać, wiec robimy tak:
 var imie = 'John';
 
 (function(name) {
@@ -610,7 +602,7 @@ var imie = 'John';
 // Wybierz sposób wywołania IIFE, który według Ciebie jest lepszy i ciagle go używaj.
 
 
-// Lekcja nr 45 Framework aside "IIFEs and Safe Code"
+// Lekcja nr 45 Framework aside "Immediately Invoked Function Expression (IIFE) and Safe Code"
 
 // Tworzymy nowy plik greet.js
 // w pliku greet.js tworzymy zmienną greeting, ktora i tak zostanie nadpisna w poniższej funkcji
@@ -624,7 +616,7 @@ var imie = 'John';
 console.log(greetingTwo); // to wyswietli 'Hola' z pliku greet.js
 
 // wiec plus IIFE, jest taki,z e mam pewność, ze np. zmienna zapsiana w IIFE, nie będzie naruszana przez inny kod
-// ani nie naruszy innego kodu
+// ani nie naruszy innego kodu, bo nie jesteś w stanie jej wywołać (chyba o to chodzi)
 
 
 // Lekcja nr 46 "Understanding clousures"
