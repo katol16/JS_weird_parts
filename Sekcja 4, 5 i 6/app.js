@@ -605,7 +605,10 @@ var imie = 'John';
 // Lekcja nr 45 Framework aside "Immediately Invoked Function Expression (IIFE) and Safe Code"
 
 // Tworzymy nowy plik greet.js
-// w pliku greet.js tworzymy zmienną greeting, ktora i tak zostanie nadpisna w poniższej funkcji
+// w pliku greet.js tworzymy zmienną greetingTwo, ktora i tak zostanie nadpisna w poniższej funkcji
+
+// Pamiętajmy jednak, ze jeśli tutaj zrobimy:
+console.log("z pliku greet.js: "+greetingTwo); // to wyswietli 'Hola' z pliku greet.js
 
 (function(name) {
 	var greetingTwo = "Hello";
@@ -613,9 +616,9 @@ var imie = 'John';
 }('John')); // IIFE
 
 // Pamiętajmy jednak, ze jeśli tutaj zrobimy:
-console.log(greetingTwo); // to wyswietli 'Hola' z pliku greet.js
+console.log("z pliku greet.js: "+greetingTwo); // to wyswietli 'Hola' z pliku greet.js
 
-// wiec plus IIFE, jest taki,z e mam pewność, ze np. zmienna zapsiana w IIFE, nie będzie naruszana przez inny kod
+// wiec plus IIFE, jest taki, że mamy pewność, ze np. zmienna zapsiana w IIFE, nie będzie naruszana przez inny kod
 // ani nie naruszy innego kodu, bo nie jesteś w stanie jej wywołać (chyba o to chodzi)
 
 
@@ -632,7 +635,8 @@ greet('Hi')('Tony');
 // pamiętaj, że greet('Hi'); zwróci funkcję, więc po prostu znowu ją wywołasz ('Tony');
 
 // Tutaj jednak mamy pewne 'dziwne' rzeczy. Przykład:
-var sayHi = greet('Hi');
+var sayHi = greet('Hi'); // Pamiętaj, że tutaj nie wywołuejsz funkcji, tlyko poniżej
+// Poniżej masz wywołąnie tej funkcji
 sayHi('Tony');
 // To też się wykona poprawnie. Tylko skąd zwracana funkcja wie (pamięta), jaką wartosc ma zmienna "whattosay". itd.
 // To działa poprawnie właśnie ze względu na CLOUSURES
