@@ -669,13 +669,41 @@ fs[2]();// zwróci 3
 
 // Dzieję się tak ponieważ zmienna "i" jest nadpisywana w pętli. Ostatni jest zapis bedzie i=3 i pętla się skończy
 
+// lepiej zoabczysz to poniżej:
+function buildFunctions() {
+	var arr = [];
+
+	for (var i = 0; i < 3; i++) {
+		arr.push(
+			function() {
+				console.log(i);
+			}
+		)
+		console.log(i);
+	}
+	console.log(i);
+	return arr;
+}
+
+var fs = buildFunctions();
+console.log(fs);// Jak zerkniesz tu na jakis element w scopes, to zoabczysz, ze "i", ma wszędzie takie same wartości,
+	// bo jest clousures, wiec zapamietuje wartośc "i" a przy następnych iteracjach ją nadpisuje!
+fs[0]();// zwróci 3, bo się var i nadpisało, a dzieki clousures, ta funckaj ma dsotęp do var i
+fs[1]();// zwróci 3, bo się var i nadpisało, a dzieki clousures, ta funckaj ma dsotęp do var i
+fs[2]();// zwróci 3, bo się var i nadpisało, a dzieki clousures, ta funckaj ma dsotęp do var i
+
+
 // Teraz żeby otrzymać rezultat 1,2,3 możemy zrobić np:
 // za pomocą ES6
+// Dlatego ten przykłąd zadziała dobrze, bo let, jest "block scoped"
 function buildFunctions2() {
 	var arr = [];
 
 	for (var i = 0; i < 3; i++) {
 		let j = i;
+		// Dlatego ten przykłąd zadziała dobrze, bo let, jest "block scoped",
+		// jak tu zamiast let dasz var, to dalej "i" się nadpiszę, i zwróci 3 razy "2", "2" bo var j, nie przyjmie na końcu tego i++ (rozkmin dzialanie pętli)
+
 		arr.push(
 			function() {
 				console.log(j);
@@ -687,7 +715,7 @@ function buildFunctions2() {
 }
 
 var fs2 = buildFunctions2();
-
+console.log(fs2); // Jak zerkniesz tu na jakis element w scopes, to zoabczysz, ze "j", ma wszędzie inne wartości, bo jest block scoped!
 fs2[0]();// zwróci 0
 fs2[1]();// zwróci 1
 fs2[2]();// zwróci 2
@@ -749,14 +777,14 @@ function sayHiLater() {
 sayHiLater();
 
 // jQuery uses function expressions and first-class functions!
-// $("button").lick(function() {
+// $("button").click(function() {
 // 	// zrób coś
 // });
 
 // CALLBACK FUNCTON - A function you give to antoher function, to be run when the other function is finished.
 // So the function you call (i.e.invoke), 'calls back' by calling the function you gave it when it finishes.
 
-// Przykłąd z CALLBACK Function
+// Przykład z CALLBACK Function
 
 function tellMeWhenDone(callback) {
 	var a = 1000; // some work
