@@ -811,7 +811,9 @@ var person = {
 		var fullname = this.firstname + ' ' + this.lastname;
 		return fullname;
 	}
-}
+};
+
+// person.getFullName(); // zwróci normlanie "John Doe"
 
 var logName = function(lang1, lang2) {
 	// Poniższe "this" wskażę na obiekt globalny, wiec console.log zwróci błąd.
@@ -820,7 +822,7 @@ var logName = function(lang1, lang2) {
 	console.log('---------');
 	// Poniższy sposób zadziała
 	// console.log('Logged: ' + person.getFullName());
-}
+};
 
 // logName();
 
@@ -832,11 +834,7 @@ logPersonName('en');
 // UWAGA! 2 sposób zapisu tego co powyżej, też porpawny
 
 var logName2 = function(lang1, lang2) {
-	// Poniższe "this" wskażę na obiekt globalny, wiec console.log zwróci błąd.
 	console.log('Logged: ' + this.getFullName());
-
-	// Poniższy sposób zadziała
-	// console.log('Logged: ' + person.getFullName());
 }.bind(person);
 
 logName2();
@@ -853,14 +851,12 @@ logName.apply(person);
 // różnica w apply jest taka, że następne parametry podajemy w tablicy
 logName.apply(person, ['en', 'es']);
 
-// Inna metoda wywołąnia funckji za pomocą call i applty
+// Inna metoda wywołąnia funckji za pomocą call i apply
 
 (function(lang1, lang2) {
 	console.log('Logged: ' + this.getFullName());
 	console.log('Arguments: ' + lang1 + ' ' + lang2);
 	console.log('---------');
-	// Poniższy sposób zadziała
-	// console.log('Logged: ' + person.getFullName());
 }).apply(person, ['en', 'es']);
 
 // Możesz się zastanawiać kiedy użyjesz tego w praktyce, dlatego poniżej przykłązd z:
